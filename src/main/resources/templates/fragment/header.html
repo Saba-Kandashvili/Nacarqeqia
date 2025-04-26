@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header" class="main_header">
+    <div class="header_container">
+
+        <!-- Left side: Contact Info -->
+        <div class="header_contact">
+            <p>Call us: <a href="tel:+995555123456"><b>+995 555 123 456</b></a></p>
+            <p>Email: <a href="mailto:info@nacarqeqia.ge"><b>info@nacarqeqia.ge</b></a></p>
+        </div>
+
+        <!-- Center: Logo and Title -->
+        <div class="header_logo">
+            <a th:href="@{/}">
+                <img th:src="@{/images/logo.png}" alt="Nacarqeqia Logo"/>
+                <h1>Nacarqeqia</h1>
+                <p class="slogan">The Final Glow-Up 🔥</p>
+            </a>
+        </div>
+
+        <!-- Right side: Navigation Links -->
+        <div class="header_nav">
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/about}">About Us</a>
+            <a th:href="@{/pricing}">Pricing</a>
+        </div>
+
+    </div>
+</header>
+</body>
+</html>

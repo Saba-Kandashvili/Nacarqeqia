@@ -10,12 +10,9 @@ public class MappingConfig implements WebMvcConfigurer{
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/about").setViewName("about-us");
-        registry.addViewController("/contact").setViewName("contact-us");
-//        registry.addViewController("/contact").setViewName("contact-us");
 
         // Register redirects
         registry.addRedirectViewController("/home", "/");
         registry.addRedirectViewController("/about-us", "/about");
-//        registry.addRedirectViewController("/contact-us", "/contact");
     }
 }

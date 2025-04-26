@@ -8,5 +8,9 @@
     <link rel="stylesheet" href="/css/style.css"/>
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Static Website</title>
 </head>
-
+<body>
+    <header th:replace="fragment/header :: header"></header>
+    <main class="main container mb-1" layout:fragment="content"></main>
+    <footer th:replace="fragment/footer :: footer"></footer>
+</body>
 </html>

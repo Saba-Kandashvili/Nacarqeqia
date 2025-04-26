@@ -1,11 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="/css/style.css"/>
-  <title>Contact</title>
+  <title>Contact Us</title>
 </head>
 <body>
-  <h1 class="testclass">does this work</h1>
+<div layout:fragment="content">
+  <h1>📞 Contact Nacarqeqia</h1>
+  <p>Need to book a one-way trip or just have questions? We’re just a message away.</p>
+
+  <form class="form_contact" th:action="@{/contact}" th:object="${contactUs}" method="post">
+    <div class="form_group">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" th:field="*{name}" placeholder="John Doe">
+      <p class="form_error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+
+    <div class="form_group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" th:field="*{email}" placeholder="john@example.com">
+      <p class="form_error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+    </div>
+
+    <div class="form_group">
+      <label for="message">Message:</label>
+      <textarea id="message" rows="5" th:field="*{message}" placeholder="Tell us your last wishes..."></textarea>
+      <p class="form_error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
+    </div>
+
+    <button type="submit" class="form_button">Send to the Afterlife</button>
+
+    <p class="form_success" th:if="${param.successMessage != null}" th:text="${param.successMessage}">Message sent!</p>
+  </form>
+</div>
 </body>
 </html>
