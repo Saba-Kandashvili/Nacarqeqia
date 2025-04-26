@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>All Orders</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>All Orders</h1>
+    <div class="order_list">
+        <div class="order_card" th:each="o : ${order}">
+            <h3 th:text="${o.name}">Name</h3>
+            <img th:src="@{${o.imgUrl}}" alt="Thumb" class="order_thumb"/>
+            <p th:text="${o.description}">Description…</p>
+            <a th:href="@{/order(id=${o.id})}">View &raquo;</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,13 +1,71 @@
 <html lang="en"
-xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout.html}">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <head>
-    <title>Main Page</title>
+    <title>Home - Nacarqeqia</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <h1 class="testclass">testttttt</h1>
+<div layout:fragment="content" class="home_page">
+
+    <!-- Hero Section -->
+    <section class="hero_section">
+        <div class="hero_text">
+            <h1>Welcome to Nacarqeqia</h1>
+            <p>Where your final journey ends with style... and a little bit of smoke. 🔥</p>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="news_section">
+        <h2>🔥 Latest Hot News</h2>
+        <div class="news_cards">
+
+            <div class="news_card">
+                <img th:src="@{/images/grandmas/grandma_2.png}" alt="News 1">
+                <div class="news_text">
+                    <h3>Grand Re-Opening!</h3>
+                    <p>Now with 50% less smoke emissions... maybe. New ovens, same dark humor. Come die in style!</p>
+                </div>
+            </div>
+
+            <div class="news_card">
+                <img th:src="@{/images/grandmas/grandma_1.png}" alt="News 2">
+                <div class="news_text">
+                    <h3>Customer Loyalty Program</h3>
+                    <p>Collect 10 cremations, get 1 free! Bring your family, bring your friends. Get roasted together. 🔥</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Featured Clients Section -->
+    <section class="clients_section">
+        <h2>🌟 Honored Guests</h2>
+        <div class="clients_cards">
+
+            <div class="client_card">
+                <img th:src="@{/images/urns/urn_1.png}" alt="Client 1">
+                <h3>Mr. B. Ashes</h3>
+                <p>"They said 'go out with a bang' — they delivered. 10/10, would burn again."</p>
+            </div>
+
+            <div class="client_card">
+                <img th:src="@{/images/urns/urn_2.png}" alt="Client 2">
+                <h3>Ms. Cinder Ella</h3>
+                <p>"I left my shoe, but they left me in smoke. Glamorous ending."</p>
+            </div>
+
+            <div class="client_card">
+                <img th:src="@{/images/urns/urn_3.png}" alt="Client 3">
+                <h3>Sir Toastalot</h3>
+                <p>"The knight is over... but damn, the flames were majestic."</p>
+            </div>
+
+        </div>
+    </section>
+
 </div>
 </body>
 </html>

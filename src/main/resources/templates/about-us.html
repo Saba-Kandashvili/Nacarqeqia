@@ -1,11 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css"/>
-    <title>about</title>
+    <title>About Us</title>
 </head>
 <body>
-<h1 class="testclass">about</h1>
+<div layout:fragment="content" class="about_container">
+
+    <section class="about_intro">
+        <h1>About Nacarqeqia</h1>
+        <p>At Nacarqeqia, we believe that every farewell deserves a little... flare. 🔥</p>
+    </section>
+
+    <section class="about_mission">
+        <h2>Our Mission</h2>
+        <p>
+            Since opening our furnace doors in 2025, we have been committed to providing dignified, efficient,
+            and slightly toasty send-offs for loved ones. We blend tradition with innovation, ensuring that every
+            "final glow-up" is handled with care, respect, and a spark of personality.
+        </p>
+    </section>
+
+    <section class="about_team">
+        <h2>Meet the Team</h2>
+        <div class="team_cards">
+
+            <div class="team_member">
+                <img th:src="@{/images/founder.png}" alt="Founder Image">
+                <h3>Dato "The Torch" Beridze</h3>
+                <p>Founder & Chief Heat Officer</p>
+                <p>With a burning passion for service, Dato ensures every departure is... unforgettable.</p>
+            </div>
+
+            <div class="team_member">
+                <img th:src="@{/images/manager.png}" alt="Manager Image">
+                <h3>Nino "Ash Whisperer" Kapanadze</h3>
+                <p>Operations Manager</p>
+                <p>From logistics to last wishes, Nino handles the details — and the dust — with grace.</p>
+            </div>
+
+            <div class="team_member">
+                <img th:src="@{/images/mascot.png}" alt="Mascot Image">
+                <h3>Mr. Fluffy</h3>
+                <p>Emotional Support Cat</p>
+                <p>Not involved in the process. Just here for cuddles and comfort (and occasional judging).</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about_commitment">
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>State-of-the-art facilities with modern pyrotechnics 🔥</li>
+            <li>Flexible packages — from solemn to spectacular</li>
+            <li>Certified 99.9% satisfaction (according to our own survey)</li>
+            <li>Complimentary marshmallows (upon request... just kidding... maybe)</li>
+        </ul>
+    </section>
+
+</div>
 </body>
 </html>
