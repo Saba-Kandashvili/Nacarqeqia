@@ -1,3 +1,25 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout.html}">-->
+<!--<head>-->
+<!--    <title>All Orders</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div layout:fragment="content">-->
+<!--    <h1>All Orders</h1>-->
+<!--    <div class="order_list">-->
+<!--        <div class="order_card" th:each="o : ${order}">-->
+<!--            <h3 th:text="${o.name}">Name</h3>-->
+<!--            <img th:src="@{${o.imgUrl}}" alt="Thumb" class="order_thumb"/>-->
+<!--            <p th:text="${o.description}">Description…</p>-->
+<!--            <a th:href="@{/order(id=${o.id})}">View &raquo;</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
@@ -7,14 +29,18 @@
     <title>All Orders</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <h1>All Orders</h1>
-    <div class="order_list">
-        <div class="order_card" th:each="o : ${order}">
-            <h3 th:text="${o.name}">Name</h3>
-            <img th:src="@{${o.imgUrl}}" alt="Thumb" class="order_thumb"/>
-            <p th:text="${o.description}">Description…</p>
-            <a th:href="@{/order(id=${o.id})}">View &raquo;</a>
+<div layout:fragment="content" class="orders-page">
+    <h1 class="page-title">All Orders</h1>
+    <div class="orders-grid">
+        <div class="order-card" th:each="o : ${order}">
+            <div class="order-card-image">
+                <img th:src="@{${o.imgUrl}}" alt="Thumb" class="order-thumb"/>
+            </div>
+            <div class="order-card-body">
+                <h3 class="order-name" th:text="${o.name}">Name</h3>
+                <p class="order-desc" th:text="${o.description}">Description…</p>
+                <a th:href="@{/order(id=${o.id})}" class="order-button">View Detail</a>
+            </div>
         </div>
     </div>
 </div>

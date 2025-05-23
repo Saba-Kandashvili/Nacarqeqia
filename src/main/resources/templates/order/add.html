@@ -1,3 +1,57 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout.html}">-->
+<!--<head>-->
+<!--    <title>Add New Order</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div layout:fragment="content">-->
+<!--    <div class="form_page">-->
+<!--        <h1 class="form_title">Add a New Order</h1>-->
+
+<!--        <form th:action="@{/order/add}"-->
+<!--              th:object="${addOrder}"-->
+<!--              method="post"-->
+<!--              enctype="multipart/form-data"-->
+<!--              class="form_container">-->
+
+<!--            <div class="form_group">-->
+<!--                <label for="grandma_name" class="form_label">Grandma's Name:</label>-->
+<!--                <input type="text" id="grandma_name" th:field="*{grandma_name}" class="form_input" required>-->
+<!--                <p class="error_message" th:if="${#fields.hasErrors('grandma_name')}" th:errors="*{grandma_name}"></p>-->
+<!--            </div>-->
+
+<!--            <div class="form_group">-->
+<!--                <label for="description" class="form_label">Description:</label>-->
+<!--                <textarea id="description" th:field="*{description}" class="form_textarea" rows="5" required></textarea>-->
+<!--                <p class="error_message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>-->
+<!--            </div>-->
+
+<!--            <div class="form_group">-->
+<!--                <label for="your_name" class="form_label">Your Name:</label>-->
+<!--                <input type="text" id="your_name" th:field="*{your_name}" class="form_input" required>-->
+<!--                <p class="error_message" th:if="${#fields.hasErrors('your_name')}" th:errors="*{your_name}"></p>-->
+<!--            </div>-->
+
+<!--            <div class="form_group">-->
+<!--                <label for="image" class="form_label">Upload Image:</label>-->
+<!--                <input type="file" id="image" name="image" class="form_input_file" required>-->
+<!--                <p class="error_message" th:if="${imageError}" th:text="${imageError}"></p>-->
+<!--            </div>-->
+
+<!--            <div class="form_group">-->
+<!--                <button type="submit" class="order_button">Submit Order</button>-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--        <p th:if="${successMessage}" class="success_message" th:text="${successMessage}"></p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
@@ -7,47 +61,41 @@
     <title>Add New Order</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <div class="form_page">
-        <h1 class="form_title">Add a New Order</h1>
+<div layout:fragment="content" class="add-order-page">
+    <h1 class="form-title">Add a New Order</h1>
+    <form th:action="@{/order/add}"
+          th:object="${addOrder}"
+          method="post"
+          enctype="multipart/form-data"
+          class="form-container">
 
-        <form th:action="@{/order/add}"
-              th:object="${addOrder}"
-              method="post"
-              enctype="multipart/form-data"
-              class="form_container">
+        <div class="form-group">
+            <label for="grandma_name">Grandma's Name</label>
+            <input type="text" id="grandma_name" th:field="*{grandma_name}" required>
+            <p class="error-message" th:if="${#fields.hasErrors('grandma_name')}" th:errors="*{grandma_name}"></p>
+        </div>
 
-            <div class="form_group">
-                <label for="grandma_name" class="form_label">Grandma's Name:</label>
-                <input type="text" id="grandma_name" th:field="*{grandma_name}" class="form_input" required>
-                <p class="error_message" th:if="${#fields.hasErrors('grandma_name')}" th:errors="*{grandma_name}"></p>
-            </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" th:field="*{description}" rows="5" required></textarea>
+            <p class="error-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+        </div>
 
-            <div class="form_group">
-                <label for="description" class="form_label">Description:</label>
-                <textarea id="description" th:field="*{description}" class="form_textarea" rows="5" required></textarea>
-                <p class="error_message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
-            </div>
+        <div class="form-group">
+            <label for="your_name">Your Name</label>
+            <input type="text" id="your_name" th:field="*{your_name}" required>
+            <p class="error-message" th:if="${#fields.hasErrors('your_name')}" th:errors="*{your_name}"></p>
+        </div>
 
-            <div class="form_group">
-                <label for="your_name" class="form_label">Your Name:</label>
-                <input type="text" id="your_name" th:field="*{your_name}" class="form_input" required>
-                <p class="error_message" th:if="${#fields.hasErrors('your_name')}" th:errors="*{your_name}"></p>
-            </div>
+        <div class="form-group">
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image" required>
+            <p class="error-message" th:if="${imageError}" th:text="${imageError}"></p>
+        </div>
 
-            <div class="form_group">
-                <label for="image" class="form_label">Upload Image:</label>
-                <input type="file" id="image" name="image" class="form_input_file" required>
-                <p class="error_message" th:if="${imageError}" th:text="${imageError}"></p>
-            </div>
-
-            <div class="form_group">
-                <button type="submit" class="order_button">Submit Order</button>
-            </div>
-        </form>
-
-        <p th:if="${successMessage}" class="success_message" th:text="${successMessage}"></p>
-    </div>
+        <button type="submit" class="btn-submit">Submit Order</button>
+        <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
+    </form>
 </div>
 </body>
 </html>
