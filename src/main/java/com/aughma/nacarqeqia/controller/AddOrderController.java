@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 public class AddOrderController {
@@ -24,32 +24,35 @@ public class AddOrderController {
     private OrderService orderService;
 
     @GetMapping("/order/add")
-    public String addOrder(Model model) {
-        model.addAttribute("addOrder", new AddOrder());
+    public String addOrder(@ModelAttribute("addOrder") AddOrder addOrder) {
+        // The blank AddOrder object will be added to the model automatically
         return "order/add";
     }
 
     @PostMapping("/order/add")
-    public String productAdd(
+    public String submitOrder(
             @Valid @ModelAttribute("addOrder") AddOrder addOrder,
             BindingResult bindingResult,
             @RequestParam("image") MultipartFile image,
-            Model model,
+            Principal principal,                                // ← inject current user
             RedirectAttributes redirectAttributes
     ) throws IOException {
-
+        // if no file selected
         if (image.isEmpty()) {
-            model.addAttribute("imageError", "Please select an image file.");
+            bindingResult.rejectValue("image", "image.empty", "Please select an image file.");
         }
 
-        if (bindingResult.hasErrors() || image.isEmpty()) {
-            model.addAttribute("addOrder", addOrder);
+        // validation errors?
+        if (bindingResult.hasErrors()) {
             return "order/add";
         }
 
-        Order newOrder = orderService.save(addOrder, image);
+        // get signed-in username
+        String username = principal.getName();
 
-        redirectAttributes.addFlashAttribute("successMessage", "Order added successfully");
+        // save and redirect
+        Order newOrder = orderService.save(username, addOrder, image);
+        redirectAttributes.addFlashAttribute("successMessage", "Order added successfully!");
         return "redirect:/order?id=" + newOrder.getId();
     }
 }

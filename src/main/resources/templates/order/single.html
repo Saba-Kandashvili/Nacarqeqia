@@ -1,30 +1,10 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en"-->
-<!--      xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorate="~{layout.html}">-->
-<!--<head>-->
-<!--    <title th:text="${order.name}">Order Details</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div layout:fragment="content">-->
-<!--    <h1>-->
-<!--        <a th:href="@{/orders}">&laquo; All Orders</a>-->
-<!--        <span th:text="${order.name}">Order Name</span>-->
-<!--    </h1>-->
-<!--    <img th:src="@{${order.imgUrl}}" alt="Order Image" class="order_full_image"/>-->
-<!--    <p th:text="${order.description}">Order Description</p>-->
-<!--    <p th:if="${successMessage}" class="success_message" th:text="${successMessage}"></p>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout.html}">
 <head>
-    <title th:text="${order.name}">Order Details</title>
+    <title th:text="${order.deceasedName}">Order Details</title>
 </head>
 <body>
 <div layout:fragment="content" class="order-detail-page">
@@ -34,7 +14,7 @@
             <img th:src="@{${order.imgUrl}}" alt="Order Image" class="order-full-image"/>
         </div>
         <div class="order-detail-info">
-            <h1 class="order-name" th:text="${order.name}">Order Name</h1>
+            <h1 class="order-name" th:text="${order.deceasedName}">Order Name</h1>
             <p class="order-desc" th:text="${order.description}">Order Description</p>
             <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
         </div>
