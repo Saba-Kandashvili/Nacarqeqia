@@ -8,37 +8,48 @@
 
         <!-- Left side: Contact Info -->
         <div class="header_contact">
-            <p>Call us: <a href="tel:+995555123456"><b>+995 555 30 21 22</b></a></p>
-            <p>Email: <a href="mailto:info@nacarqeqia.ge"><b>info@nacarqeqia.ge</b></a></p>
+            <p><span th:text="#{header.callus}">Call us:</span> <a href="tel:+995555123456"><b>+995 555 30 21 22</b></a></p>
+            <p><span th:text="#{header.email}">Email:</span> <a href="mailto:info@nacarqeqia.ge"><b>info@nacarqeqia.ge</b></a></p>
+            
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <a href="?lang=en" class="lang-link" th:classappend="${#locale.language == 'en'} ? 'active'">
+                    <span th:text="#{app.lang.en}">English</span>
+                </a>
+                <span class="lang-divider">|</span>
+                <a href="?lang=ka" class="lang-link" th:classappend="${#locale.language == 'ka'} ? 'active'">
+                    <span th:text="#{app.lang.ka}">Georgian</span>
+                </a>
+            </div>
         </div>
 
         <!-- Center: Logo and Title -->
         <div class="header_logo">
             <a th:href="@{/}">
                 <img th:src="@{/images/logo.png}" alt="Nacarqeqia Logo"/>
-                <h1>Nacarqeqia</h1>
-                <p class="slogan">The Final Glow-Up 🔥</p>
+                <h1 th:text="#{app.title}">Nacarqeqia</h1>
+                <p class="slogan" th:text="#{app.slogan}">The Final Glow-Up 🔥</p>
             </a>
         </div>
 
         <!-- Right side: Navigation Links -->
         <div class="header_nav">
-            <a th:href="@{/contact}">Contact</a>
-            <a th:href="@{/about}">About Us</a>
-            <a th:href="@{/order/add}">Order</a>
+            <a th:href="@{/contact}" th:text="#{header.contact}">Contact</a>
+            <a th:href="@{/about}" th:text="#{header.aboutus}">About Us</a>
+            <a th:href="@{/order/add}" th:text="#{header.order}">Order</a>
             
             <!-- Logout button (only visible when logged in) -->
             <div sec:authorize="isAuthenticated()" class="auth-controls">
-                <span class="welcome-text" sec:authentication="name">Username</span>
+                <span class="welcome-text"><span th:text="#{header.welcome}">Welcome,</span> <span sec:authentication="name">Username</span></span>
                 <form th:action="@{/logout}" method="post" class="logout-form">
-                    <button type="submit" class="logout-button">Logout</button>
+                    <button type="submit" class="logout-button" th:text="#{header.logout}">Logout</button>
                 </form>
             </div>
             
             <!-- Authentication links (only visible when not logged in) -->
             <div sec:authorize="!isAuthenticated()" class="auth-links">
-                <a th:href="@{/login}" class="login-link">Login</a>
-                <a th:href="@{/register}" class="register-link">Register</a>
+                <a th:href="@{/login}" class="login-link" th:text="#{header.login}">Login</a>
+                <a th:href="@{/register}" class="register-link" th:text="#{header.register}">Register</a>
             </div>
         </div>
 

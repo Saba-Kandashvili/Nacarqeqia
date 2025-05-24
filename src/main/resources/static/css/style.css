@@ -1,4 +1,43 @@
+/* Global Font Settings */
+:root {
+    --font-primary: 'Sylfaen', 'Segoe UI', Tahoma, sans-serif;
+}
 
+/* Set base font family for all elements */
+body {
+    font-family: var(--font-primary);
+}
+
+/* Language Selector Styles */
+.language-selector {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.lang-link {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.lang-link:hover {
+    color: #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.lang-link.active {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.lang-divider {
+    margin: 0 6px;
+    color: #6c757d;
+}
 /* ==========================================================================
 VARIABLES & RESET
 ========================================================================== */
@@ -14,7 +53,7 @@ VARIABLES & RESET
 
 { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Sylfaen', 'Segoe UI', sans-serif;
     background: var(--bg-light);
     color: var(--text-dark);
 }
