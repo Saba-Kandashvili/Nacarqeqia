@@ -9,13 +9,13 @@
 <div layout:fragment="content" class="about_container">
 
     <section class="about_intro">
-        <h1>About Nacarqeqia</h1>
-        <p>At Nacarqeqia, we believe that every farewell deserves a little... flare. 🔥</p>
+        <h1 th:text="#{about.about}">About Nacarqeqia</h1>
+        <p th:text="#{about.subtitle}">At Nacarqeqia, we believe that every farewell deserves a little... flare. 🔥</p>
     </section>
 
     <section class="about_mission">
-        <h2>Our Mission</h2>
-        <p>
+        <h2 th:text="#{about.mission}">Our Mission</h2>
+        <p th:text="#{about.missionsub}">
             Since opening our furnace doors in 2025, we have been committed to providing dignified, efficient,
             and slightly toasty send-offs for loved ones. We blend tradition with innovation, ensuring that every
             "final glow-up" is handled with care, respect, and a spark of personality.
@@ -23,40 +23,40 @@
     </section>
 
     <section class="about_team">
-        <h2>Meet the Team</h2>
+        <h2 th:text="#{about.team}">Meet the Team</h2>
         <div class="team_cards">
 
             <div class="team_member">
                 <img th:src="@{/images/office_guys/office_vacuum_guy.png}" alt="Founder Image">
-                <h3>Dato Beridze</h3>
-                <p>Founder & Chief Heat Officer</p>
-                <p>With a burning passion for service, Dato ensures every departure is... unforgettable.</p>
+                <h3 th:text="#{about.dato}">Dato Beridze</h3>
+                <p th:text="#{about.datosub}">Founder & Chief Heat Officer</p>
+                <p th:text="#{about.datosubtext}">With a burning passion for service, Dato ensures every departure is... unforgettable.</p>
             </div>
 
             <div class="team_member">
                 <img th:src="@{/images/office_guys/office_manager_guy.png}" alt="Manager Image">
-                <h3>Nino Kapanadze</h3>
-                <p>Operations Manager</p>
-                <p>From logistics to last wishes, Nino handles the details — and the dust — with grace.</p>
+                <h3 th:text="#{about.nino}">Nino Kapanadze</h3>
+                <p th:text="#{about.ninosub}">Operations Manager</p>
+                <p th:text="#{about.ninosubtext}">From logistics to last wishes, Nino handles the details — and the dust — with grace.</p>
             </div>
 
             <div class="team_member">
                 <img th:src="@{/images/office_guys/office_cat_guy.png}" alt="Mascot Image">
-                <h3>Mr. Not That Fluffy</h3>
-                <p>Emotional Support Cat</p>
-                <p>Not involved in the process. Just here for cuddles and comfort (and occasional judging).</p>
+                <h3 th:text="#{about.fluffy}">Mr. Not That Fluffy</h3>
+                <p th:text="#{about.fluffysub}">Emotional Support Cat</p>
+                <p th:text="#{about.fluffysubtext}">Not involved in the process. Just here for cuddles and comfort (and occasional judging).</p>
             </div>
 
         </div>
     </section>
 
     <section class="about_commitment">
-        <h2>Why Choose Us?</h2>
+        <h2 th:text="#{about.choseus}">Why Choose Us?</h2>
         <ul>
-            <li>State-of-the-art facilities with modern pyrotechnics 🔥</li>
-            <li>Flexible packages — from solemn to spectacular</li>
-            <li>Certified 99.9% satisfaction (according to our own survey)</li>
-            <li>Complimentary marshmallows (upon request... just kidding... maybe)</li>
+            <li th:text="#{about.why1}">State-of-the-art facilities with modern pyrotechnics 🔥</li>
+            < th:text="#{about.why2}">Flexible packages — from solemn to spectacular</li>
+            <li th:text="#{about.why3}">Certified 99.9% satisfaction (according to our own survey)</li>
+            <li th:text="#{about.why4}">Complimentary marshmallows (upon request... just kidding... maybe)</li>
         </ul>
     </section>
 

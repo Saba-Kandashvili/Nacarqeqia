@@ -11,29 +11,29 @@
     <!-- Hero Section -->
     <section class="hero_section">
         <div class="hero_text">
-            <h1>Welcome to Nacarqeqia</h1>
-            <p>Where your final journey ends with style... and a little bit of smoke. 🔥</p>
+            <h1 th:text="#{home.welcome}">Welcome to Nacarqeqia</h1>
+            <p th:text="#{home.subtitle}">Where your final journey ends with style... and a little bit of smoke. 🔥</p>
         </div>
     </section>
 
     <!-- Latest News Section -->
     <section class="news_section">
-        <h2>🔥 Latest Hot News</h2>
+        <h2 th:text="#{home.news}">🔥 Latest Hot News</h2>
         <div class="news_cards">
 
             <div class="news_card">
                 <img th:src="@{/images/grandmas/grandma_2.png}" alt="News 1">
                 <div class="news_text">
-                    <h3>Grand Re-Opening!</h3>
-                    <p>Now with 50% less smoke emissions... maybe. New ovens, same dark humor. Come die in style!</p>
+                    <h3 th:text="#{home.reopening}">Grand Re-Opening!</h3>
+                    <p th:text="#{home.reopeningsubtitle}">Now with 50% less smoke emissions... maybe. New ovens, same dark humor. Come die in style!</p>
                 </div>
             </div>
 
             <div class="news_card">
                 <img th:src="@{/images/grandmas/grandma_1.png}" alt="News 2">
                 <div class="news_text">
-                    <h3>Customer Loyalty Program</h3>
-                    <p>Collect 10 cremations, get 1 free! Bring your family, bring your friends. Get roasted together. 🔥</p>
+                    <h3 th:text="#{home.customerloyalty}">Customer Loyalty Program</h3>
+                    <p th:text="#{home.customerloyaltysubtitle}">Collect 10 cremations, get 1 free! Bring your family, bring your friends. Get roasted together. 🔥</p>
                 </div>
             </div>
 
@@ -42,25 +42,25 @@
 
     <!-- Featured Clients Section -->
     <section class="clients_section">
-        <h2>🌟 Honored Guests</h2>
+        <h2 th:text="#{home.guests}">🌟 Honored Guests</h2>
         <div class="clients_cards">
 
             <div class="client_card">
                 <img th:src="@{/images/urns/urn_1.png}" alt="Client 1">
-                <h3>Mr. B. Ashes</h3>
-                <p>"They said 'go out with a bang' — they delivered. 10/10, would burn again."</p>
+                <h3 th:text="#{home.ashes}">Mr. B. Ashes</h3>
+                <p th:text="#{home.ashessub}">"They said 'go out with a bang' — they delivered. 10/10, would burn again."</p>
             </div>
 
             <div class="client_card">
                 <img th:src="@{/images/urns/urn_2.png}" alt="Client 2">
-                <h3>Ms. Cinder Ella</h3>
-                <p>"I left my shoe, but they left me in smoke. Glamorous ending."</p>
+                <h3 th:text="#{home.ella}">Ms. Cinder Ella</h3>
+                <p th:text="#{home.ellasub}">"I left my shoe, but they left me in smoke. Glamorous ending."</p>
             </div>
 
             <div class="client_card">
                 <img th:src="@{/images/urns/urn_3.png}" alt="Client 3">
-                <h3>Sir Toastalot</h3>
-                <p>"The knight is over... but damn, the flames were majestic."</p>
+                <h3 th:text="#{home.toastalot}">Sir Toastalot</h3>
+                <p th:text="#{home.toastalotsub}">"The knight is over... but damn, the flames were majestic."</p>
             </div>
 
         </div>
