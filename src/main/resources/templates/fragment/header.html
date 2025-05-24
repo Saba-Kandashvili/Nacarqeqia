@@ -35,8 +35,11 @@
                 </form>
             </div>
             
-            <!-- Login link (only visible when not logged in) -->
-            <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="login-link">Login</a>
+            <!-- Authentication links (only visible when not logged in) -->
+            <div sec:authorize="!isAuthenticated()" class="auth-links">
+                <a th:href="@{/login}" class="login-link">Login</a>
+                <a th:href="@{/register}" class="register-link">Register</a>
+            </div>
         </div>
 
     </div>

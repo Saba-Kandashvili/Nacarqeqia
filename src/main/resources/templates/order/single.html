@@ -9,12 +9,37 @@
 <body>
 <div layout:fragment="content" class="order-detail-page">
     <a th:href="@{/orders}" class="back-link">&laquo; Back to All Orders</a>
+    
+    <div class="order-meta">
+        <div class="order-id">Order #<span th:text="${order.id}">123</span></div>
+        <div class="order-date">
+            Submitted: <span th:text="${#temporals.format(order.createdAt, 'MMMM dd, yyyy HH:mm')}">January 1, 2023</span>
+        </div>
+    </div>
+    
     <div class="order-detail">
         <div class="order-detail-image">
             <img th:src="@{${order.imgUrl}}" alt="Order Image" class="order-full-image"/>
         </div>
         <div class="order-detail-info">
             <h1 class="order-name" th:text="${order.deceasedName}">Order Name</h1>
+            
+            <div class="info-table">
+                <div class="info-row">
+                    <div class="info-label">Client Name:</div>
+                    <div class="info-value" th:text="${order.clientName}">Client Name</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Submitted By:</div>
+                    <div class="info-value" th:text="${order.author.username}">username123</div>
+                </div>
+                <div class="info-row" th:if="${order.updatedAt != null}">
+                    <div class="info-label">Last Updated:</div>
+                    <div class="info-value" th:text="${#temporals.format(order.updatedAt, 'MMMM dd, yyyy HH:mm')}">January 2, 2023</div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Description</h2>
             <p class="order-desc" th:text="${order.description}">Order Description</p>
             <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
         </div>

@@ -31,6 +31,14 @@ public class OrderController {
     @GetMapping("/order")
     public String order(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes) {
         return repository.findById(id).map(order -> {
+                // Ensure the author is loaded to prevent LazyInitializationException
+                if (order.getAuthor() != null) {
+                    order.getAuthor().getUsername(); // Touch the username to initialize
+                }
+                // Ensure the author is loaded to prevent LazyInitializationException
+                if (order.getAuthor() != null) {
+                    order.getAuthor().getUsername(); // Touch the username to initialize
+                }
             model.addAttribute("order", order);
             return "order/single";
         }).orElseGet(() -> {
