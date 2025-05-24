@@ -38,7 +38,14 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/profile")
                         .permitAll()
                 )
-                .logout(Customizer.withDefaults())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                )
                 .rememberMe(rm -> rm
                         .key("uniqueAndSecret")
                         .tokenValiditySeconds(86400)

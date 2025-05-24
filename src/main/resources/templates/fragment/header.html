@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <header th:fragment="header" class="main_header">
     <div class="header_container">
@@ -25,7 +26,17 @@
             <a th:href="@{/contact}">Contact</a>
             <a th:href="@{/about}">About Us</a>
             <a th:href="@{/order/add}">Order</a>
-
+            
+            <!-- Logout button (only visible when logged in) -->
+            <div sec:authorize="isAuthenticated()" class="auth-controls">
+                <span class="welcome-text" sec:authentication="name">Username</span>
+                <form th:action="@{/logout}" method="post" class="logout-form">
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </div>
+            
+            <!-- Login link (only visible when not logged in) -->
+            <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="login-link">Login</a>
         </div>
 
     </div>
