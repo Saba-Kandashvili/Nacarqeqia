@@ -26,6 +26,23 @@
         <tag/>
         <url/>
     </scm>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
     <properties>
         <java.version>24</java.version>
     </properties>
@@ -112,6 +129,9 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <profiles>
+                        <profile>${spring.profiles.active}</profile>
+                    </profiles>
                 </configuration>
             </plugin>
         </plugins>

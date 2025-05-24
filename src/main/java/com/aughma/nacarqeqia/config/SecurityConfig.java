@@ -29,7 +29,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/h2-console/**") // disable CSRF on H2 Console
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/h2-console/**", "/h2-console").permitAll()
                         .requestMatchers("/order/**", "/profile/**").authenticated()
                         .anyRequest().permitAll()
                 )
