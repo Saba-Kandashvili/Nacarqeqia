@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout.html}">
 <head>
@@ -8,12 +7,12 @@
 </head>
 <body>
 <div layout:fragment="content" class="order-detail-page">
-    <a th:href="@{/orders}" class="back-link">&laquo; <span th:text="#{order.back}">Back to All Orders</span></a>
+    <a th:href="@{/orders}" class="back-link">&laquo; Back to All Orders</a>
     
     <div class="order-meta">
         <div class="order-id">Order #<span th:text="${order.id}">123</span></div>
         <div class="order-date">
-            <span th:text="#{order.submitted}">Submitted:</span> <span th:text="${#temporals.format(order.createdAt, 'MMMM dd, yyyy HH:mm')}">January 1, 2023</span>
+            Submitted: <span th:text="${#temporals.format(order.createdAt, 'MMMM dd, yyyy HH:mm')}">January 1, 2023</span>
         </div>
     </div>
     
@@ -26,20 +25,20 @@
             
             <div class="info-table">
                 <div class="info-row">
-                    <div class="info-label" th:text="#{order.clientname}">Client Name:</div>
+                    <div class="info-label">Client Name:</div>
                     <div class="info-value" th:text="${order.clientName}">Client Name</div>
                 </div>
                 <div class="info-row">
-                    <div class="info-label" th:text="#{order.submittedby}">Submitted By:</div>
+                    <div class="info-label">Submitted By:</div>
                     <div class="info-value" th:text="${order.author.username}">username123</div>
                 </div>
                 <div class="info-row" th:if="${order.updatedAt != null}">
-                    <div class="info-label" th:text="#{order.lastupdated}">Last Updated:</div>
+                    <div class="info-label">Last Updated:</div>
                     <div class="info-value" th:text="${#temporals.format(order.updatedAt, 'MMMM dd, yyyy HH:mm')}">January 2, 2023</div>
                 </div>
             </div>
             
-            <h2 class="section-title" th:text="#{order.description}">Description</h2>
+            <h2 class="section-title">Description</h2>
             <p class="order-desc" th:text="${order.description}">Order Description</p>
             <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
         </div>
