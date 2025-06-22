@@ -8,37 +8,41 @@
 .lang-option {
     display: inline-block;
     padding: 4px 8px;
-    background-color: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #fff;
     border-radius: 4px;
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-weight: bold;
     font-size: 14px;
     transition: all 0.2s ease;
 }
 
 .lang-option:hover {
-    background-color: #ddd;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .lang-option.active {
-    background-color: #333;
-    color: white;
+    background-color: #fff;
+    color: #b71c1c; /* Dark Red */
 }
+
 /* ==========================================================================
 VARIABLES & RESET
 ========================================================================== */
 :root {
-    --primary: #d33;
-    --secondary: #6c63ff;
-    --bg-light: #f5f7fa;
-    --bg-white: #fff;
-    --text-dark: #222;
+    --primary-red: #d32f2f;      /* A strong, primary red */
+    --dark-red: #b71c1c;        /* A darker red for accents/background */
+    --flame-glow: #ff5722;      /* A fiery orange for glow effects */
+    --bg-light: #fdfbf7;        /* A very light, warm cream background */
+    --bg-white: #ffffff;
+    --text-dark: #2c2c2c;
     --text-muted: #666;
     --border-radius: 8px;
 }
 
-{ box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
     font-family: 'Segoe UI', sans-serif;
     background: var(--bg-light);
@@ -50,52 +54,194 @@ a { text-decoration: none; color: inherit; }
 HEADER & NAVIGATION
 ========================================================================== */
 .main_header {
-    background: #f8f8f8;
-    padding: 20px 0;
-    border-bottom: 2px solid #ddd;
+    background-color: var(--dark-red);
+    background-image:
+            linear-gradient(45deg, var(--primary-red) 25%, transparent 25%),
+            linear-gradient(-45deg, var(--primary-red) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, var(--primary-red) 75%),
+            linear-gradient(-45deg, transparent 75%, var(--primary-red) 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+
+    padding: 10px 0;
+    border-bottom: 4px solid var(--dark-red);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    color: var(--bg-white);
 }
+
 .header_container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
     align-items: center;
+    /* REVISED: Key change for the layout. Pushes children to the edges. */
     justify-content: space-between;
+    /* REVISED: position:relative is required for absolute centering of the logo */
+    position: relative;
+    /* REVISED: Set a minimum height to contain the large, centered logo */
+    min-height: 140px;
 }
-.header_contact p {
-    margin: 0;
+
+/* REVISED: Removed flex:1 and gave each section a defined width/purpose */
+.header_contact {
+    width: 33.33%; /* Takes up the left third */
     font-size: 14px;
-    color: #555;
 }
+
+.header_nav {
+    width: 33.33%; /* Takes up the right third */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligns all nav items to the far right */
+    gap: 15px;
+}
+
+
+/* Left: Contact Info */
+.header_contact p {
+    margin: 0 0 4px 0;
+    opacity: 0.9;
+}
+.header_contact a {
+    color: var(--bg-white);
+    font-weight: bold;
+}
+.header_contact a:hover {
+    text-decoration: underline;
+}
+
+/* Center: Logo */
+/* REVISED: This block is now absolutely centered, fixing all alignment issues */
 .header_logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
+    display: flex; /* Using flex to stack logo and slogan vertically */
+    flex-direction: column;
+    align-items: center;
+}
+/* REVISED: Logo is a perfectly centered, circular medallion */
+.header_logo a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-white);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.4s ease;
+    /* REVISED: Explicit width and height for a perfect circle */
+    width: 130px;
+    height: 130px;
+}
+.header_logo a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px 5px var(--flame-glow);
 }
 .header_logo img {
-    height: 80px;
+    height: 110px;
 }
 .header_logo h1 {
-    margin: 5px 0 0 0;
-    font-size: 24px;
-    color: #222;
+    display: none;
 }
+/* REVISED: The slogan is now positioned correctly below the logo medallion */
 .header_logo .slogan {
-    margin: 0;
+    margin: 10px 0 0 0;
     font-size: 14px;
-    color: #666;
+    font-style: italic;
+    opacity: 0.9;
+    /* The slogan is no longer inside the <a> tag in the provided HTML,
+       but this style ensures it's spaced correctly under the logo circle.
+       Correction: It IS inside the A tag, but flexbox on header_logo will manage it.
+       Let's adjust. */
 }
-.header_nav a {
-    margin-left: 20px;
+
+
+/* Right: Navigation & Auth */
+.header_nav .main-nav-link {
     font-weight: bold;
     font-size: 16px;
-    color: #222;
-    transition: color 0.3s ease;
+    white-space: nowrap; /* Prevents links like "About Us" from wrapping */
+    color: var(--bg-white);
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
-.header_nav a:visited {
-    color: #222;
+.header_nav .main-nav-link:hover {
+    background-color: rgba(255,255,255,0.15);
 }
-.header_nav a:hover {
-    color: var(--primary);
+
+/* Auth Buttons & Profile Icon */
+.auth-controls, .auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
+
+/* Profile Icon & Logout */
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--bg-white);
+    padding: 6px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+.profile-link:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+.profile-icon {
+    width: 28px;
+    height: 28px;
+    fill: var(--bg-white);
+}
+.welcome-text {
+    font-weight: bold;
+}
+
+/* Login / Register Buttons */
+.login-link, .register-link {
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid var(--bg-white);
+    white-space: nowrap;
+}
+.login-link {
+    color: var(--bg-white);
+    background-color: transparent;
+}
+.login-link:hover {
+    background-color: var(--bg-white);
+    color: var(--dark-red);
+}
+.register-link {
+    color: var(--dark-red);
+    background-color: var(--bg-white);
+}
+.register-link:hover {
+    background-color: var(--bg-light);
+    border-color: var(--bg-light);
+}
+
+.logout-form { margin: 0; }
+.logout-button {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.logout-button:hover {
+    background: rgba(0,0,0,0.2);
+    border-color: white;
+}
+
 
 /* ==========================================================================
 HOME PAGE
@@ -121,7 +267,7 @@ HOME PAGE
 }
 .hero_text h1 {
     font-size: 48px;
-    color: var(--primary);
+    color: var(--primary-red);
     margin-bottom: 20px;
 }
 .hero_text p {
@@ -187,7 +333,7 @@ HOME PAGE
 }
 .client_card h3 {
     font-size: 20px;
-    color: var(--primary);
+    color: var(--primary-red);
     margin-bottom: 10px;
 }
 .client_card p {
@@ -222,7 +368,7 @@ ABOUT US PAGE
 .about_team h2,
 .about_commitment h2 {
     font-size: 28px;
-    color: var(--primary);
+    color: var(--primary-red);
     text-align: center;
 }
 .about_mission p,
@@ -304,11 +450,11 @@ CONTACT US FORM
 .form_group input:focus,
 .form_group textarea:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 5px rgba(211, 51, 51, 0.5);
+    border-color: var(--primary-red);
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.5);
 }
 .form_button {
-    background: var(--primary);
+    background: var(--primary-red);
     color: white;
     border: none;
     padding: 12px 20px;
@@ -319,10 +465,10 @@ CONTACT US FORM
     transition: background 0.3s ease;
 }
 .form_button:hover {
-    background: #a00;
+    background: var(--dark-red);
 }
 .form_error {
-    color: var(--primary);
+    color: var(--primary-red);
     font-size: 14px;
     margin-top: 5px;
 }
@@ -387,7 +533,7 @@ ADD ORDER FORM
 }
 .form-container input:focus,
 .form-container textarea:focus {
-    border-color: var(--secondary);
+    border-color: #6c63ff; /* Note: --secondary is still #6c63ff, can be changed later */
     outline: none;
 }
 .btn-submit {
@@ -395,7 +541,7 @@ ADD ORDER FORM
     width: 100%;
     padding: 12px;
     margin-top: 1rem;
-    background: var(--primary);
+    background: var(--primary-red);
     color: #fff;
     border: none;
     border-radius: var(--border-radius);
@@ -403,7 +549,7 @@ ADD ORDER FORM
     transition: background 0.3s;
 }
 .btn-submit:hover {
-    background: #a00;
+    background: var(--dark-red);
 }
 
 /* ==========================================================================
@@ -447,7 +593,7 @@ ORDERS GRID (all.html)
 }
 .order-button {
     display: inline-block;
-    background: var(--secondary);
+    background: #6c63ff; /* Note: This is still old --secondary color */
     color: #fff;
     padding: 8px 12px;
     border-radius: var(--border-radius);
@@ -469,7 +615,7 @@ ORDERS GRID (all.html)
     transition: color 0.3s;
 }
 .back-link:hover {
-    color: var(--primary);
+    color: var(--primary-red);
 }
 .order-detail {
     display: flex;
@@ -500,58 +646,25 @@ ORDERS GRID (all.html)
 }
 
 /* ==========================================================================
-ADD BACK ANY PAGE-SPECIFIC STYLES BELOW (e.g. ABOUT PAGE)
-========================================================================== /
-/ Keep original .about_* rules here unchanged */
-
-/* ==========================================================================
 LOGIN & REGISTER PAGE SPECIFIC STYLES
 ========================================================================== */
 .login-page,
 .register-page {
     display: flex;
-    flex-direction: column; /* Stack children vertically (though page-wrapper is the main one) */
-    justify-content: center; /* Center .page-wrapper vertically if page has height */
-    align-items: center;     /* Center .page-wrapper horizontally */
-    min-height: 80vh;        /* Give some height for vertical centering to be apparent, adjust as needed */
-    padding: 20px;           /* Add some padding around the centered content */
-    box-sizing: border-box;  /* Ensure padding doesn't add to width/height for min-height */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/*
-   The .page-wrapper will now be centered within .login-page or .register-page.
-   The .form-container inside .page-wrapper already has a max-width: 450px;
-   and the .form-title has text-align: center, so they will look good within
-   the centered .page-wrapper.
-*/
-
-/* You might want to ensure .page-wrapper doesn't expand unnecessarily,
-   though its content (.form-title and .form-container with max-width)
-   will likely constrain it appropriately. If not, you can add: */
 .page-wrapper {
-    width: 100%; /* Take up available width within the centered flex item space */
-    max-width: 500px; /* Or match the widest element you expect, e.g., form-container's max-width */
-    /* The above max-width for .page-wrapper might conflict or be redundant with
-       .form-container's own max-width. Often, you just let .page-wrapper
-       be sized by its content. The important part is centering .page-wrapper.
-       Given .form-container has max-width: 450px and .form-title has width: 100%,
-       .page-wrapper will effectively be max 450px wide (or wider if title text is very long and not wrapping).
-       The flex centering on .login-page/.register-page is the primary fix.
-    */
+    width: 100%;
+    max-width: 500px;
 }
 
-/* Styles for form elements (already mostly present in your CSS) */
 .form-title {
     text-align: center;
-    margin-bottom: 20px; /* Existing style, ensure it's what you want */
-    /* width: 100%; /* This is already in your CSS, good */
+    margin-bottom: 20px;
 }
-
-/* .form-container already has max-width: 450px from:
-.login-page .form-container,
-.register-page .form-container {
-    width: 100%;
-    max-width: 450px;
-}
-This is good.
-*/
