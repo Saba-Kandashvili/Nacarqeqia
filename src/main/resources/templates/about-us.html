@@ -6,59 +6,80 @@
     <title>About Us</title>
 </head>
 <body>
-<div layout:fragment="content" class="about_container">
+<div layout:fragment="content" class="page-container about-page-container">
 
-    <section class="about_intro">
-        <h1 th:text="#{about.about}">About Nacarqeqia</h1>
+    <!-- Page Title & Subtitle -->
+    <div class="about-section">
+        <h1 class="section-title" th:text="#{about.about}">About Nacarqeqia</h1>
         <p th:text="#{about.subtitle}">At Nacarqeqia, we believe that every farewell deserves a little... flare. 🔥</p>
-    </section>
+    </div>
 
-    <section class="about_mission">
+    <!-- Our Mission Section -->
+    <div class="about-section">
         <h2 th:text="#{about.mission}">Our Mission</h2>
         <p th:text="#{about.missionsub}">
             Since opening our furnace doors in 2025, we have been committed to providing dignified, efficient,
             and slightly toasty send-offs for loved ones. We blend tradition with innovation, ensuring that every
             "final glow-up" is handled with care, respect, and a spark of personality.
         </p>
-    </section>
+    </div>
 
-    <section class="about_team">
-        <h2 th:text="#{about.team}">Meet the Team</h2>
-        <div class="team_cards">
+    <!-- Meet the Team Section -->
+    <div class="team-section">
+        <h2 class="section-title" style="margin-bottom: 50px;" th:text="#{about.team}">Meet the Team</h2>
+        <div class="team-cards-container">
 
-            <div class="team_member">
-                <img th:src="@{/images/office_guys/office_vacuum_guy.png}" alt="Founder Image">
-                <h3 th:text="#{about.dato}">Dato Beridze</h3>
-                <p th:text="#{about.datosub}">Founder & Chief Heat Officer</p>
-                <p th:text="#{about.datosubtext}">With a burning passion for service, Dato ensures every departure is... unforgettable.</p>
+            <!-- Team Member 1 -->
+            <div class="team-member-glass">
+                <div class="team-image-container">
+                    <img th:src="@{/images/office_guys/office_vacuum_guy.png}" alt="Founder Image">
+                </div>
+                <div class="team-info">
+                    <h3 th:text="#{about.dato}">Dato Beridze</h3>
+                    <p class="title" th:text="#{about.datosub}">Founder & Chief Heat Officer</p>
+                    <p class="description" th:text="#{about.datosubtext}">With a burning passion for service, Dato ensures every departure is... unforgettable.</p>
+                </div>
             </div>
 
-            <div class="team_member">
-                <img th:src="@{/images/office_guys/office_manager_guy.png}" alt="Manager Image">
-                <h3 th:text="#{about.nino}">Nino Kapanadze</h3>
-                <p th:text="#{about.ninosub}">Operations Manager</p>
-                <p th:text="#{about.ninosubtext}">From logistics to last wishes, Nino handles the details — and the dust — with grace.</p>
+            <!-- Team Member 2 -->
+            <div class="team-member-glass">
+                <div class="team-image-container">
+                    <img th:src="@{/images/office_guys/office_manager_guy.png}" alt="Manager Image">
+                </div>
+                <div class="team-info">
+                    <h3 th:text="#{about.nino}">Nino Kapanadze</h3>
+                    <p class="title" th:text="#{about.ninosub}">Operations Manager</p>
+                    <p class="description" th:text="#{about.ninosubtext}">From logistics to last wishes, Nino handles the details — and the dust — with grace.</p>
+                </div>
             </div>
 
-            <div class="team_member">
-                <img th:src="@{/images/office_guys/office_cat_guy.png}" alt="Mascot Image">
-                <h3 th:text="#{about.fluffy}">Mr. Not That Fluffy</h3>
-                <p th:text="#{about.fluffysub}">Emotional Support Cat</p>
-                <p th:text="#{about.fluffysubtext}">Not involved in the process. Just here for cuddles and comfort (and occasional judging).</p>
+            <!-- Team Member 3 (The Cat) -->
+            <div class="team-member-glass">
+                <div class="team-image-container">
+                    <img th:src="@{/images/office_guys/office_cat_guy.png}" alt="Mascot Image">
+                </div>
+                <div class="team-info">
+                    <h3 th:text="#{about.fluffy}">Mr. Not That Fluffy</h3>
+                    <p class="title" th:text="#{about.fluffysub}">Emotional Support Cat</p>
+                    <p class="description" th:text="#{about.fluffysubtext}">Not involved in the process. Just here for cuddles and comfort (and occasional judging).</p>
+                </div>
             </div>
 
         </div>
-    </section>
+    </div>
 
-    <section class="about_commitment">
-        <h2 th:text="#{about.choseus}">Why Choose Us?</h2>
-        <ul>
-            <li th:text="#{about.why1}">State-of-the-art facilities with modern pyrotechnics 🔥</li>
-            < th:text="#{about.why2}">Flexible packages — from solemn to spectacular</li>
-            <li th:text="#{about.why3}">Certified 99.9% satisfaction (according to our own survey)</li>
-            <li th:text="#{about.why4}">Complimentary marshmallows (upon request... just kidding... maybe)</li>
-        </ul>
-    </section>
+    <!-- Why Choose Us Section -->
+    <div class="commitment-section">
+        <h2 class="section-title" th:text="#{about.choseus}">Why Choose Us?</h2>
+        <div class="commitment-container-glass">
+            <ul class="commitment-list">
+                <li th:text="#{about.why1}">State-of-the-art facilities with modern pyrotechnics</li>
+                <li th:text="#{about.why2}">Flexible packages — from solemn to spectacular</li>
+                <li th:text="#{about.why3}">Certified 99.9% satisfaction (according to our own survey)</li>
+                <li th:text="#{about.why4}">Complimentary marshmallows (upon request... just kidding... maybe)</li>
+            </ul>
+        </div>
+    </div>
 
 </div>
 </body>

@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout.html}">
-<head>
-    <title>All Orders</title>
-</head>
-<body>
-<div layout:fragment="content" class="orders-page">
-    <h1 class="page-title">All Orders</h1>
-    <div class="orders-grid">
-        <div class="order-card" th:each="o : ${order}">
-            <div class="order-card-image">
-                <img th:src="@{${o.imgUrl}}" alt="Thumb" class="order-thumb"/>
+<div layout:fragment="content" class="page-container orders-page-container" xmlns:layout="http://www.w3.org/1999/xhtml">
+    <h1 class="section-title">All Orders</h1>
+
+    <div class="orders-grid-modern">
+        <!-- Re-using the .info-card style from the homepage for consistency -->
+        <div class="info-card" th:each="o : ${order}">
+            <div class="card-image">
+                <img th:src="@{${o.imgUrl}}" alt="Order Image" class="order-thumb"/>
             </div>
-            <div class="order-card-body">
-                <h3 class="order-name" th:text="${o.deceasedName}">Name</h3>
-                <p class="order-desc" th:text="${o.description}">Description…</p>
-                <a th:href="@{/order(id=${o.id})}" class="order-button">View Detail</a>
+            <div class="card-content">
+                <h3 class="order-name" th:text="${o.deceasedName}">Deceased Name</h3>
+                <p class="order-desc" th:text="${o.description}">Description of the order...</p>
+                <a th:href="@{/order(id=${o.id})}" class="order-view-button">View Detail</a>
             </div>
         </div>
     </div>
 </div>
-</body>
-</html>

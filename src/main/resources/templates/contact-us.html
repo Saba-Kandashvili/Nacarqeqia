@@ -6,32 +6,40 @@
   <title>Contact Us</title>
 </head>
 <body>
-<div layout:fragment="content">
-  <h1 th:text="#{contact.title}">📞 Contact Nacarqeqia</h1>
-  <p th:text="#{contact.subtitle}">Need to book a one-way trip or just have questions? We’re just a message away.</p>
+<div layout:fragment="content" class="page-container contact-page-container">
 
-  <form class="form_contact" th:action="@{/contact}" th:object="${contactUs}" method="post">
-    <div class="form_group">
+  <h1 class="section-title" th:text="#{contact.title}">📞 Contact Nacarqeqia</h1>
+  <p class="hero-content" style="text-align: center; max-width: 600px; margin: 0 auto 50px auto;" th:text="#{contact.subtitle}">
+    Need to book a one-way trip or just have questions? We’re just a message away.
+  </p>
+
+  <form class="form-container-glass" th:action="@{/contact}" th:object="${contactUs}" method="post">
+    <!-- Name Field -->
+    <div class="form-group-modern">
       <label for="name" th:text="#{contact.name}">Full Name:</label>
-      <input type="text" id="name" th:field="*{name}" placeholder="John Doe">
+      <input type="text" id="name" th:field="*{name}" th:placeholder="#{contact.placeholder.name}">
       <p class="form_error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     </div>
 
-    <div class="form_group">
+    <!-- Email Field -->
+    <div class="form-group-modern">
       <label for="email" th:text="#{contact.email}">Email Address:</label>
-      <input type="email" id="email" th:field="*{email}" placeholder="john@example.com">
+      <input type="email" id="email" th:field="*{email}" th:placeholder="#{contact.placeholder.email}">
       <p class="form_error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     </div>
 
-    <div class="form_group">
+    <!-- Message Field -->
+    <div class="form-group-modern">
       <label for="message" th:text="#{contact.message}">Message:</label>
-      <textarea id="message" rows="5" th:field="*{message}" placeholder="Tell us your last wishes..."></textarea>
+      <textarea id="message" rows="5" th:field="*{message}" th:placeholder="#{contact.placeholder.message}"></textarea>
       <p class="form_error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
     </div>
 
-    <button type="submit" class="form_button" th:text="#{contact.button}">Send to the Afterlife</button>
+    <!-- Submit Button -->
+    <button type="submit" class="submit-button-modern" th:text="#{contact.button}">Send to the Afterlife</button>
 
-    <p class="form_success" th:if="${param.successMessage != null}" th:text="${param.successMessage}">Message sent!</p>
+    <!-- Success Message Area -->
+    <p class="form_success" th:if="${successMessage}" th:text="${successMessage}">Message sent!</p>
   </form>
 </div>
 </body>

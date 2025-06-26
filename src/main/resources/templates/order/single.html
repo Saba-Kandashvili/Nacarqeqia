@@ -1,48 +1,46 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout.html}">
-<head>
-    <title th:text="${order.deceasedName}">Order Details</title>
-</head>
-<body>
-<div layout:fragment="content" class="order-detail-page">
-    <a th:href="@{/orders}" class="back-link">&laquo; Back to All Orders</a>
-    
-    <div class="order-meta">
-        <div class="order-id">Order #<span th:text="${order.id}">123</span></div>
-        <div class="order-date">
-            Submitted: <span th:text="${#temporals.format(order.createdAt, 'MMMM dd, yyyy HH:mm')}">January 1, 2023</span>
-        </div>
-    </div>
-    
-    <div class="order-detail">
-        <div class="order-detail-image">
-            <img th:src="@{${order.imgUrl}}" alt="Order Image" class="order-full-image"/>
-        </div>
-        <div class="order-detail-info">
-            <h1 class="order-name" th:text="${order.deceasedName}">Order Name</h1>
-            
-            <div class="info-table">
-                <div class="info-row">
-                    <div class="info-label">Client Name:</div>
-                    <div class="info-value" th:text="${order.clientName}">Client Name</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Submitted By:</div>
-                    <div class="info-value" th:text="${order.author.username}">username123</div>
-                </div>
-                <div class="info-row" th:if="${order.updatedAt != null}">
-                    <div class="info-label">Last Updated:</div>
-                    <div class="info-value" th:text="${#temporals.format(order.updatedAt, 'MMMM dd, yyyy HH:mm')}">January 2, 2023</div>
-                </div>
+<div layout:fragment="content" class="page-container orders-page-container" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+    <a th:href="@{/orders}" class="back-link-modern">« Back to All Orders</a>
+
+    <div class="order-detail-container-glass">
+        <div class="order-detail-layout">
+            <!-- Left Column: Image -->
+            <div class="order-detail-image-modern">
+                <img th:src="@{${order.imgUrl}}" alt="Order Image"/>
             </div>
-            
-            <h2 class="section-title">Description</h2>
-            <p class="order-desc" th:text="${order.description}">Order Description</p>
-            <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
+
+            <!-- Right Column: Information -->
+            <div class="order-detail-info-modern">
+                <h1 th:text="${order.deceasedName}">Order Name</h1>
+
+                <div class="info-table-modern">
+                    <div class="info-row-modern">
+                        <div class="info-label-modern">Order ID:</div>
+                        <div class="info-value-modern" th:text="'#' + ${order.id}">#123</div>
+                    </div>
+                    <div class="info-row-modern">
+                        <div class="info-label-modern">Client Name:</div>
+                        <div class="info-value-modern" th:text="${order.clientName}">Client Name</div>
+                    </div>
+                    <div class="info-row-modern">
+                        <div class="info-label-modern">Submitted By:</div>
+                        <div class="info-value-modern" th:text="${order.author.username}">username123</div>
+                    </div>
+                    <div class="info-row-modern">
+                        <div class="info-label-modern">Submitted:</div>
+                        <div class="info-value-modern" th:text="${#temporals.format(order.createdAt, 'MMMM dd, yyyy')}">January 1, 2023</div>
+                    </div>
+                    <div class="info-row-modern" th:if="${order.updatedAt != null}">
+                        <div class="info-label-modern">Last Updated:</div>
+                        <div class="info-value-modern" th:text="${#temporals.format(order.updatedAt, 'MMMM dd, yyyy')}">January 2, 2023</div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Description</h2>
+                <p class="order-desc" th:text="${order.description}">Detailed order description here.</p>
+
+                <p class="form_success" th:if="${successMessage}" th:text="${successMessage}"></p>
+            </div>
         </div>
     </div>
 </div>
-</body>
-</html>
