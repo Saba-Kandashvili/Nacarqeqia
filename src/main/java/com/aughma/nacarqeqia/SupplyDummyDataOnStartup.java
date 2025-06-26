@@ -22,9 +22,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Component
 @RequiredArgsConstructor
 public class SupplyDummyDataOnStartup {
+    private static final Logger log = LoggerFactory.getLogger(SupplyDummyDataOnStartup.class);
 
     private final JdbcUserDetailsManager userDetailsManager;
     private final PasswordEncoder passwordEncoder;
@@ -39,6 +43,8 @@ public class SupplyDummyDataOnStartup {
     @SneakyThrows
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReady() {
+        log.info("Application ready. Seeding database with dummy data...");
+
         var users = List.of(
                 User.withUsername("admin")
                         .password(passwordEncoder.encode("admin"))
@@ -96,5 +102,7 @@ public class SupplyDummyDataOnStartup {
 
             orderRepository.save(order);
         }
+
+        log.info("Finished seeding database. Created {} users and {} orders.", users.size(), numberOfOrders);
     }
 }

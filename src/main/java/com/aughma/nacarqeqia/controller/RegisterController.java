@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequiredArgsConstructor
 public class RegisterController {
+
+    private static final Logger log = LoggerFactory.getLogger(RegisterController.class);
 
     private final UserService userService;
 
@@ -32,12 +37,14 @@ public class RegisterController {
     ) {
         // Check if passwords match
         if (!registerForm.getPassword().equals(registerForm.getConfirmPassword())) {
+            log.warn("Registration failed for username '{}': Passwords do not match.", registerForm.getUsername());
             model.addAttribute("passwordMatchError", "Passwords do not match");
             return "register";
         }
 
         // Check if username already exists
         if (userService.existsUsername(registerForm.getUsername())) {
+            log.warn("Registration failed: Username '{}' already exists.", registerForm.getUsername());
             model.addAttribute("usernameError", "Username already exists");
             return "register";
         }
@@ -49,6 +56,9 @@ public class RegisterController {
 
         // Register the new user
         userService.register(registerForm.getUsername(), registerForm.getPassword());
+
+
+        log.info("New user registered successfully: '{}'", registerForm.getUsername());
 
         // Redirect to login page with success message
         redirectAttributes.addFlashAttribute("successMessage", "Registration successful! Please log in.");
