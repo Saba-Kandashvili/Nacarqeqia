@@ -92,7 +92,7 @@ public class SupplyDummyDataOnStartup {
             );
 
             Order order = new Order();
-            order.setDeceasedName(addOrder.getDeceased_name());
+            order.setDeceasedName(addOrder.getDeceasedName());
             order.setDescription(addOrder.getDescription());
             order.setImgUrl(imageUrl);
             order.setUpdatedAt(LocalDateTime.now());

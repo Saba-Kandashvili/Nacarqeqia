@@ -47,7 +47,7 @@ public class OrderService {
         Files.write(target, image.getBytes());
 
         Order order = new Order();
-        order.setDeceasedName(addOrder.getDeceased_name());
+        order.setDeceasedName(addOrder.getDeceasedName());
         order.setDescription(addOrder.getDescription());
         order.setImgUrl("/image/" + fileName);
         order.setUpdatedAt(LocalDateTime.now());
@@ -62,7 +62,7 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Order order = new Order();
-        order.setDeceasedName(addOrder.getDeceased_name());
+        order.setDeceasedName(addOrder.getDeceasedName ());
         order.setDescription(addOrder.getDescription());
         order.setImgUrl("/image/default.png"); // dummy image
         order.setUpdatedAt(LocalDateTime.now());

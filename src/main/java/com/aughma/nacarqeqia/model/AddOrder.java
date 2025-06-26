@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class AddOrder {
     @NotNull(message = "Name of the deceased one is required")
     @Size(min = 2, max = 20)
-    private String deceased_name;
+    private String deceasedName;
 
     @NotNull(message = "Description is required")
     @Size(min = 5, max = 100, message = "Description too long/short")
@@ -20,5 +20,5 @@ public class AddOrder {
 
     @NotNull(message = "Your Name is required")
     @Size(min = 2, max = 20)
-    private String your_name;
+    private String yourName;
 }

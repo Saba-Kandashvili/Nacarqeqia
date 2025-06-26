@@ -13,9 +13,9 @@
 
         <!-- Apply the modern group style to each form group -->
         <div class="form-group-modern">
-            <label for="deceased_name" th:text="#{order.deceased.name}">Deceased Name</label>
-            <input type="text" id="deceased_name" th:field="*{deceased_name}" th:placeholder="#{order.deceased.placeholder}" required>
-            <p class="form_error" th:if="${#fields.hasErrors('deceased_name')}" th:errors="*{deceased_name}"></p>
+            <label for="deceasedName" th:text="#{order.deceased.name}">Deceased Name</label>
+            <input type="text" id="deceasedName" th:field="*{deceasedName}" th:placeholder="#{order.deceased.placeholder}" required>
+            <p class="form_error" th:if="${#fields.hasErrors('deceasedName')}" th:errors="*{deceasedName}"></p>
         </div>
 
         <div class="form-group-modern">
@@ -25,15 +25,21 @@
         </div>
 
         <div class="form-group-modern">
-            <label for="your_name" th:text="#{order.your.name}">Your Name</label>
-            <input type="text" id="your_name" th:field="*{your_name}" th:placeholder="#{order.your.name.placeholder}" required>
-            <p class="form_error" th:if="${#fields.hasErrors('your_name')}" th:errors="*{your_name}"></p>
+            <label for="yourName" th:text="#{order.your.name}">Your Name</label>
+            <input type="text" id="yourName" th:field="*{yourName}" th:placeholder="#{order.your.name.placeholder}" required>
+            <p class="form_error" th:if="${#fields.hasErrors('yourName')}" th:errors="*{yourName}"></p>
         </div>
 
         <div class="form-group-modern file-upload">
             <label for="image" th:text="#{order.upload.image}">Upload Image</label>
             <input type="file" id="image" name="image" required>
-            <p class="form_error" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></p>
+            <!--
+              More Robust Fix: Check the BindingResult for a field error directly.
+              This is less common but avoids issues if the field isn't on the object.
+            -->
+            <div th:if="${#fields.hasErrors('image')}" class="form_error">
+                <p th:each="err : ${#fields.errors('image')}" th:text="${err}"></p>
+            </div>
         </div>
 
         <!-- Apply the modern button style -->

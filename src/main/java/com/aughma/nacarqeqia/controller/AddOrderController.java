@@ -20,6 +20,8 @@ import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.ui.Model;
+
 @Controller
 public class AddOrderController {
 
@@ -29,8 +31,10 @@ public class AddOrderController {
     private OrderService orderService;
 
     @GetMapping("/order/add")
-    public String addOrder(@ModelAttribute("addOrder") AddOrder addOrder) {
-        // The blank AddOrder object will be added to the model automatically
+    public String addOrder(Model model) {
+        // Explicitly add a new, empty AddOrder object to the model.
+        // This guarantees the template will have what it needs.
+        model.addAttribute("addOrder", new AddOrder());
         return "order/add";
     }
 
@@ -55,7 +59,7 @@ public class AddOrderController {
 
         // get signed-in username
         String username = principal.getName();
-        log.info("User '{}' is submitting a new order for deceased '{}'.", username, addOrder.getDeceased_name());
+        log.info("User '{}' is submitting a new order for deceased '{}'.", username, addOrder.getDeceasedName());
 
         try {
             // save and redirect

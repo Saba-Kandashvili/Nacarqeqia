@@ -843,97 +843,20 @@ body {
     padding: 10px;
     border-radius: 6px;
 }
-/* ==========================================================================
-ADD ORDER FORM
-========================================================================== */
-.add-order-page {
-    padding: 60px 20px;
-    display: flex;
-    justify-content: center;
-}
-.form-container {
-    background: var(--bg-white);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 500px;
-}
-.form-container .form-group {
-    margin-bottom: 1rem;
-}
-.form-container label {
-    margin-bottom: .5rem;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-page .form-container,
-.register-page .form-container {
-    width: 100%;
-    max-width: 450px;
-}
-
-.add-order-page .form-container {
-    width: 100%;
-}
-
-.login-page .form-title,
-.register-page .form-title,
-.add-order-page .form-title {
-    text-align: center;
-    width: 100%;
-}
-.form-container input,
-.form-container textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: var(--border-radius);
-    transition: border-color 0.3s;
-}
-.form-container input:focus,
-.form-container textarea:focus {
-    border-color: #6c63ff; /* Note: --secondary is still #6c63ff, can be changed later */
-    outline: none;
-}
-.btn-submit {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin-top: 1rem;
-    background: var(--primary-red);
-    color: #fff;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background 0.3s;
-}
-.btn-submit:hover {
-    background: var(--dark-red);
-}
 
 /* ==========================================================================
-   MODERN ORDER PAGES
+   MODERN ORDER, LOGIN & REGISTER PAGES (UNIFIED)
    ========================================================================== */
 
+/* --- All Orders Grid Page --- */
 .orders-page-container {
     padding: 80px 0;
 }
-
-/* --- All Orders Grid Page --- */
 .orders-grid-modern {
     display: grid;
-    /* Responsive grid: creates columns that are at least 340px wide */
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 40px;
 }
-
-/* The cards will reuse the .info-card style from the homepage for the frosted glass effect.
-   We just need to style the button inside. */
 .order-view-button {
     display: inline-block;
     padding: 10px 25px;
@@ -954,7 +877,6 @@ ADD ORDER FORM
     box-shadow: 0 4px 15px rgba(211, 47, 47, 0.5);
 }
 
-
 /* --- Single Order Detail Page --- */
 .back-link-modern {
     display: inline-block;
@@ -968,10 +890,8 @@ ADD ORDER FORM
     color: var(--primary-red);
     transform: translateX(-5px);
 }
-
 .order-detail-container-glass {
     padding: 40px;
-    /* Frosted Glass Effect */
     background: rgba(42, 42, 46, 0.6);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -979,26 +899,22 @@ ADD ORDER FORM
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
-
 .order-detail-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: flex-start;
 }
-/* Make it a single column on smaller screens */
 @media (max-width: 900px) {
     .order-detail-layout {
         grid-template-columns: 1fr;
     }
 }
-
 .order-detail-image-modern img {
     width: 100%;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-
 .order-detail-info-modern h1 {
     font-size: 2.5rem;
     color: #fff;
@@ -1010,7 +926,6 @@ ADD ORDER FORM
     margin-bottom: 15px;
     margin-top: 30px;
 }
-/* Remove the underline from the section-title for this context */
 .order-detail-info-modern .section-title::after {
     display: none;
 }
@@ -1018,7 +933,6 @@ ADD ORDER FORM
     color: #c0c0c0;
     line-height: 1.7;
 }
-
 .info-table-modern {
     margin-bottom: 20px;
     border-left: 3px solid var(--primary-red);
@@ -1038,28 +952,37 @@ ADD ORDER FORM
     font-weight: 500;
 }
 
-
-
-/* ==========================================================================
-LOGIN & REGISTER PAGE SPECIFIC STYLES
-========================================================================== */
-.login-page,
-.register-page {
+/* --- NEW: Login & Register Page Styles --- */
+.auth-page-container {
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    min-height: 80vh;
-    padding: 20px;
-    box-sizing: border-box;
+    justify-content: center;
+    padding: 40px 20px;
 }
-
-.page-wrapper {
-    width: 100%;
-    max-width: 500px;
+.auth-page-container .section-title {
+    margin-bottom: 40px;
 }
-
-.form-title {
+.auth-page-container .section-title::after {
+    display: none; /* No underline for these titles */
+}
+.auth-form-links {
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 25px;
+    color: #a0a0a0;
 }
+.auth-form-links a {
+    color: var(--primary-red);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Specific styling for login page messages */
+.login-messages {
+    margin-top: 20px;
+    text-align: center;
+}
+.login-messages .success-message { color: #5eff8b; }
+.login-messages .error-message { color: #ff5c5c; }
+.login-messages .info-message { color: #87ceeb; }

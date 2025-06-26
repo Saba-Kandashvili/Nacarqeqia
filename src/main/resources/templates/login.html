@@ -7,50 +7,41 @@
     <title>Log In</title>
 </head>
 <body>
-<div layout:fragment="content" class="login-page">
-    <div class="page-wrapper">
-        <h1 class="form-title">Welcome Back</h1>
-        
-        <form th:action="@{/login}" method="post" class="form-container">
-            <!-- CSRF token is automatically included for Spring Security login form -->
-        
-        <div class="form-group">
+<div layout:fragment="content" class="auth-page-container">
+
+    <h1 class="section-title">Welcome Back</h1>
+
+    <form th:action="@{/login}" method="post" class="form-container-glass" style="max-width: 450px;">
+        <!-- CSRF token is automatically included -->
+
+        <div class="form-group-modern">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
         </div>
-        
-        <div class="form-group">
+
+        <div class="form-group-modern">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
         </div>
-        
-        <div class="remember-me">
-            <input type="checkbox" id="remember-me" name="remember-me">
-            <label for="remember-me">Remember me</label>
+
+        <div class="form-group-modern">
+            <input type="checkbox" id="remember-me" name="remember-me" style="width: auto; margin-right: 10px;">
+            <label for="remember-me" style="display: inline-block;">Remember me</label>
         </div>
-        
-        <button type="submit" class="btn-submit">Log in</button>
-        
-        <div class="register-link-container">
+
+        <button type="submit" class="submit-button-modern">Log in</button>
+
+        <div class="auth-form-links">
             <p>Don't have an account? <a th:href="@{/register}">Register</a></p>
         </div>
-        
-        <div class="messages">
-            <div th:if="${param.success}" class="success-message">
-                You have been registered and can log in.
-            </div>
-            <div th:if="${successMessage}" class="success-message" th:text="${successMessage}">
-                Registration successful!
-            </div>
-            <div th:if="${param.error}" class="error-message">
-                Invalid username and password.
-            </div>
-            <div th:if="${param.logout}" class="info-message">
-                You have been logged out.
-            </div>
+
+        <div class="login-messages">
+            <div th:if="${param.success}" class="success-message">You have been registered and can log in.</div>
+            <div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
+            <div th:if="${param.error}" class="error-message">Invalid username and password.</div>
+            <div th:if="${param.logout}" class="info-message">You have been logged out.</div>
         </div>
     </form>
-                </div>
 </div>
 </body>
 </html>
