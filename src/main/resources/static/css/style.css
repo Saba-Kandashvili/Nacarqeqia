@@ -1051,3 +1051,54 @@ body {
     background-color: transparent;
     cursor: not-allowed;
 }
+
+/* ==========================================================================
+   ADMIN & MESSAGES PAGE STYLES
+   ========================================================================== */
+
+/* Panel for admin action buttons on profile page */
+.admin-actions-panel {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(211, 47, 47, 0.1); /* Faint red background */
+    border: 1px solid var(--primary-red);
+    border-radius: 12px;
+}
+
+/* Responsive wrapper for the table */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+}
+
+/* Styling for the messages table */
+.messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e0e0e0;
+}
+
+.messages-table th,
+.messages-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.messages-table thead th {
+    color: #fff;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.messages-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Make the message content wrap nicely */
+.messages-table .message-content {
+    white-space: pre-wrap; /* Preserves whitespace and wraps text */
+    word-break: break-word;
+    min-width: 300px; /* Give the message column a minimum width */
+}

@@ -2,13 +2,20 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout.html}">
+      layout:decorate="~{layout.html}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>My Profile</title>
 </head>
 <body>
 <div layout:fragment="content" class="page-container orders-page-container">
     <h1 class="section-title" th:text="'Orders by ' + ${username}">My Orders</h1>
+
+    <div sec:authorize="hasRole('ADMIN')" class="admin-actions-panel">
+        <a th:href="@{/admin/messages}" class="cta-button">📩 View Submitted Messages</a>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')" class="admin-actions-panel">
+        <a th:href="@{/orders}" class="cta-button">View Submitted Orders</a>
+    </div>
 
     <!-- Case 1: The user has no orders. Show a friendly message. -->
     <div th:if="${orderPage.empty}" class="text-center" style="padding: 50px 0; color: #c0c0c0;">

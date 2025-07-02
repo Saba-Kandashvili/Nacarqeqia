@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Admin - All Messages</title>
+</head>
+<body>
+<div layout:fragment="content" class="page-container">
+    <h1 class="section-title">Submitted Messages</h1>
+
+    <!-- Frosted Glass Container for the table -->
+    <div class="form-container-glass" style="max-width: none; padding: 20px;">
+
+        <!-- Case 1: No messages submitted yet -->
+        <div th:if="${messagePage.empty}" class="text-center" style="padding: 50px 0; color: #c0c0c0;">
+            <h2>The inbox is empty. Peace and quiet... for now.</h2>
+        </div>
+
+        <!-- Case 2: Display messages in a table -->
+        <div th:if="${!messagePage.empty}" class="table-responsive">
+            <table class="messages-table">
+                <thead>
+                <tr>
+                    <th>Submitted At</th>
+                    <th>From</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="message : ${messagePage.content}">
+                    <td th:text="${#temporals.format(message.submittedAt, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${message.name}"></td>
+                    <td th:text="${message.email}"></td>
+                    <td class="message-content" th:text="${message.message}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Include the reusable pagination fragment -->
+    <div th:replace="~{fragment/pagination :: pagination(page=${messagePage})}"></div>
+
+</div>
+</body>
+</html>

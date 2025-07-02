@@ -30,7 +30,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         // Require ADMIN role for all actuator endpoints and the all orders page
-                        .requestMatchers("/actuator/**", "/orders").hasRole("ADMIN")
+                        .requestMatchers("/admin/**", "/actuator/**", "/orders").hasRole("ADMIN")
                         // Your existing rules for public pages
                         .requestMatchers("/", "/register", "/contact", "/about", "/css/**", "/images/**", "/h2-console/**").permitAll()
                         // Your existing rules for authenticated users
