@@ -67,7 +67,7 @@ public class OrderService {
         order.setImgUrl("/image/default.png"); // dummy image
         order.setUpdatedAt(LocalDateTime.now());
         order.setAuthor(user); // You forgot to assign the user!
-        order.setClientName("GOD");
+        order.setClientName(addOrder.getYourName());
         order.setAuthor(user);
         return orderRepository.save(order);
     }

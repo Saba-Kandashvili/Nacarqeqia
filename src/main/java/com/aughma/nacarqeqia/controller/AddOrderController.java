@@ -42,33 +42,38 @@ public class AddOrderController {
     public String submitOrder(
             @Valid @ModelAttribute("addOrder") AddOrder addOrder,
             BindingResult bindingResult,
-            @RequestParam("image") MultipartFile image,
+            // The @RequestParam for the image is no longer needed here
             Principal principal,
             RedirectAttributes redirectAttributes
-    ) { // Remove 'throws IOException' from here
-        // if no file selected
-        if (image.isEmpty()) {
+    ) {
+        // Get the image from the model object now
+        MultipartFile image = addOrder.getImage();
+
+        // Check if no file was selected
+        if (image == null || image.isEmpty()) {
+            // This will now work correctly because the 'image' field exists in AddOrder
             bindingResult.rejectValue("image", "image.empty", "Please select an image file.");
         }
 
-        // validation errors?
+        // Check for validation errors
         if (bindingResult.hasErrors()) {
             log.warn("Order submission failed validation for user '{}'. Errors: {}", principal.getName(), bindingResult.getAllErrors());
-            return "order/add";
+            return "order/add"; // Return to the form page
         }
 
-        // get signed-in username
+        // Get signed-in username
         String username = principal.getName();
         log.info("User '{}' is submitting a new order for deceased '{}'.", username, addOrder.getDeceasedName());
 
         try {
-            // save and redirect
-            Order newOrder = orderService.save(username, addOrder, image);
+            // Save and redirect, passing the image from the model
+            Order newOrder = orderService.save(username, addOrder, addOrder.getImage());
             redirectAttributes.addFlashAttribute("successMessage", "Order added successfully!");
             log.info("Order with ID {} created successfully for user '{}'.", newOrder.getId(), username);
             return "redirect:/order?id=" + newOrder.getId();
         } catch (Exception e) {
             log.error("Failed to save image for order submitted by user '{}'.", username, e);
+            // This is a general error, not tied to a specific field on the form
             bindingResult.reject("image.save.error", "There was an error saving the image. Please try again.");
             return "order/add";
         }

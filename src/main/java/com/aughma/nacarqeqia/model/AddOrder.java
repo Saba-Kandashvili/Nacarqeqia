@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +22,6 @@ public class AddOrder {
     @NotNull(message = "Your Name is required")
     @Size(min = 2, max = 20)
     private String yourName;
+
+    private MultipartFile image;
 }

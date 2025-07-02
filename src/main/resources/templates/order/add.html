@@ -1,4 +1,13 @@
-<div layout:fragment="content" class="page-container orders-page-container" xmlns:layout="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title th:text="#{order.add.title}">Add Order</title>
+</head>
+<body>
+<div layout:fragment="content" class="page-container orders-page-container">
     <h1 class="section-title" th:text="#{order.add.title}">Add a New Order</h1>
 
     <!-- Apply the glass container style to the form -->
@@ -14,29 +23,25 @@
         <!-- Apply the modern group style to each form group -->
         <div class="form-group-modern">
             <label for="deceasedName" th:text="#{order.deceased.name}">Deceased Name</label>
-            <input type="text" id="deceasedName" th:field="*{deceasedName}" th:placeholder="#{order.deceased.placeholder}" required>
+            <input type="text" class="form-control" id="deceasedName" th:field="*{deceasedName}" th:placeholder="#{order.deceased.placeholder}" required>
             <p class="form_error" th:if="${#fields.hasErrors('deceasedName')}" th:errors="*{deceasedName}"></p>
         </div>
 
         <div class="form-group-modern">
             <label for="description" th:text="#{order.description}">Description</label>
-            <textarea id="description" th:field="*{description}" rows="5" th:placeholder="#{order.description.placeholder}" required></textarea>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="5" th:placeholder="#{order.description.placeholder}" required></textarea>
             <p class="form_error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
         </div>
 
         <div class="form-group-modern">
             <label for="yourName" th:text="#{order.your.name}">Your Name</label>
-            <input type="text" id="yourName" th:field="*{yourName}" th:placeholder="#{order.your.name.placeholder}" required>
+            <input type="text" class="form-control" id="yourName" th:field="*{yourName}" th:placeholder="#{order.your.name.placeholder}" required>
             <p class="form_error" th:if="${#fields.hasErrors('yourName')}" th:errors="*{yourName}"></p>
         </div>
 
         <div class="form-group-modern file-upload">
             <label for="image" th:text="#{order.upload.image}">Upload Image</label>
-            <input type="file" id="image" name="image" required>
-            <!--
-              More Robust Fix: Check the BindingResult for a field error directly.
-              This is less common but avoids issues if the field isn't on the object.
-            -->
+            <input type="file" id="image" th:field="*{image}" required>
             <div th:if="${#fields.hasErrors('image')}" class="form_error">
                 <p th:each="err : ${#fields.errors('image')}" th:text="${err}"></p>
             </div>
@@ -47,3 +52,5 @@
 
     </form>
 </div>
+</body>
+</html>
