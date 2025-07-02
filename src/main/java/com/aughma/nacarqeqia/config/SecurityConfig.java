@@ -29,8 +29,8 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/h2-console/**") // disable CSRF on H2 Console
                 )
                 .authorizeHttpRequests(auth -> auth
-                        // Require ADMIN role for all actuator endpoints
-                        .requestMatchers("/actuator/**").hasRole("ADMIN")
+                        // Require ADMIN role for all actuator endpoints and the all orders page
+                        .requestMatchers("/actuator/**", "/orders").hasRole("ADMIN")
                         // Your existing rules for public pages
                         .requestMatchers("/", "/register", "/contact", "/about", "/css/**", "/images/**", "/h2-console/**").permitAll()
                         // Your existing rules for authenticated users
@@ -43,6 +43,11 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/profile")
                         .permitAll()
                 )
+
+                .exceptionHandling(exceptions ->
+                        exceptions.accessDeniedPage("/403")
+                )
+
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")

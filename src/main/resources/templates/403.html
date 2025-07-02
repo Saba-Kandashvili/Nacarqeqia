@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Access Denied</title>
+</head>
+<body>
+<div layout:fragment="content" class="page-container" style="text-align: center; padding: 100px 0;">
+
+    <h1 class="section-title" style="color: var(--primary-red);">🚫 Access Denied</h1>
+
+    <div style="max-width: 600px; margin: 40px auto 0 auto; color: #c0c0c0; font-size: 1.2rem;">
+        <p>
+            Sorry, you do not have permission to view this page.
+        </p>
+        <p style="margin-top: 20px;">
+            It seems you've tried to access a restricted area, like the admin dashboard.
+        </p>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <a th:href="@{/}" class="cta-button">Go to Homepage</a>
+        <a th:href="@{/profile}" class="login-link" style="margin-left: 15px; border-color: #777;">Back to Profile</a>
+    </div>
+
+</div>
+</body>
+</html>

@@ -2,14 +2,22 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout.html}">
+      layout:decorate="~{layout.html}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title th:text="${order.deceasedName}">Order Details</title>
 </head>
 <body>
 <div layout:fragment="content" class="page-container orders-page-container">
 
-    <a th:href="@{/orders}" class="back-link-modern">« Back to All Orders</a>
+    <!-- Link for ADMIN users -->
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/orders}" class="back-link-modern">
+        « Back to All Orders (Admin)
+    </a>
+
+    <!-- Link for regular USERS -->
+    <a sec:authorize="!hasRole('ADMIN')" th:href="@{/profile}" class="back-link-modern">
+        « Back to My Profile
+    </a>
 
     <div class="order-detail-container-glass">
         <div class="order-detail-layout">
