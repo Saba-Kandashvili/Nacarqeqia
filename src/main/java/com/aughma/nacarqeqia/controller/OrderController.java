@@ -21,9 +21,10 @@ public class OrderController {
     public String orders(Pageable pageable, Model model) {
         PageRequest pageRequest = PageRequest.of(
                 pageable.getPageNumber(),
-                50  // Show 50 items per page
+                9
         );
-        model.addAttribute("order", repository.findAll(pageRequest));
+        // Renaming the model attribute for clarity
+        model.addAttribute("orderPage", repository.findAll(pageRequest));
         return "order/all";
     }
 

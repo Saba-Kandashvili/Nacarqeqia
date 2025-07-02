@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--
+  Reusable Pagination Fragment
+  - th:fragment="pagination(page)": Defines this block as a reusable fragment named "pagination" that accepts one parameter: 'page'.
+  - The 'page' parameter must be a Spring Data 'Page' object (e.g., the 'orderPage' from your controller).
+-->
+<nav th:fragment="pagination(page)" th:if="${page.totalPages > 1}" class="pagination-container" aria-label="Page navigation">
+    <ul class="pagination-list">
+
+        <!-- 'Previous' Link -->
+        <li class="page-item" th:classappend="${page.first} ? 'disabled'">
+            <a class="page-link" th:href="${page.first} ? '#' : '?page=' + ${page.number - 1}" aria-label="Previous">
+                «
+            </a>
+        </li>
+
+        <!-- Page Numbers -->
+        <!-- We'll show a few pages around the current page for usability -->
+        <th:block th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+            <li class="page-item"
+                th:if="${i == page.number or
+                       i == page.number - 1 or i == page.number + 1 or
+                       i == 0 or i == page.totalPages - 1}"
+                th:classappend="${i == page.number} ? 'active'">
+                <a class="page-link" th:href="'?page=' + ${i}" th:text="${i + 1}">1</a>
+            </li>
+            <!-- Add ellipsis (...) if there's a gap in page numbers -->
+            <li class="page-item disabled"
+                th:if="${(i == 1 and page.number > 2) or
+                       (i == page.totalPages - 2 and page.number < page.totalPages - 3)}">
+                <span class="page-link">…</span>
+            </li>
+        </th:block>
+
+        <!-- 'Next' Link -->
+        <li class="page-item" th:classappend="${page.last} ? 'disabled'">
+            <a class="page-link" th:href="${page.last} ? '#' : '?page=' + ${page.number + 1}" aria-label="Next">
+                »
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+</body>
+</html>

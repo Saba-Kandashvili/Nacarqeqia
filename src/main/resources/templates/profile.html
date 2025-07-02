@@ -33,7 +33,8 @@
             </div>
         </div>
 
-        <!-- TODO: Add pagination controls here if you have many orders per user -->
+        <!-- Include the reusable pagination fragment -->
+        <div th:replace="~{fragment/pagination :: pagination(page=${orderPage})}"></div>
 
     </div>
 </div>
