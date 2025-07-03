@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 @Controller
 public class OrderController {
@@ -23,23 +22,16 @@ public class OrderController {
                 pageable.getPageNumber(),
                 9
         );
-        // Renaming the model attribute for clarity
-        model.addAttribute("orderPage", repository.findAll(pageRequest));
+        model.addAttribute("orderPage", repository.findAllWithAuthor(pageRequest));
         return "order/all";
     }
-
 
     @GetMapping("/order")
     public String order(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes) {
         return repository.findById(id).map(order -> {
-                // Ensure the author is loaded to prevent LazyInitializationException
-                if (order.getAuthor() != null) {
-                    order.getAuthor().getUsername(); // Touch the username to initialize
-                }
-                // Ensure the author is loaded to prevent LazyInitializationException
-                if (order.getAuthor() != null) {
-                    order.getAuthor().getUsername(); // Touch the username to initialize
-                }
+            if (order.getAuthor() != null) {
+                order.getAuthor().getUsername();
+            }
             model.addAttribute("order", order);
             return "order/single";
         }).orElseGet(() -> {

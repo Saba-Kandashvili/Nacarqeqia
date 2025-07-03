@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Page Not Found</title>
+</head>
+<body>
+<div layout:fragment="content" class="page-container" style="text-align: center; padding: 100px 0;">
+
+    <div class="info-card" style="width: 400px; margin: 0 auto 50px auto; background-color: rgba(0,0,0,0.2);">
+        <div class="card-image" style="padding: 20px;">
+            <img th:src="@{/images/urns/lost_soul.png}" alt="A lost soul" style="height: 500px; width: auto; object-fit: contain;"/>
+        </div>
+    </div>
+
+    <h1 class="section-title" style="color: var(--primary-red);" th:text="#{404.cremated}">404 - This Page Has Been Cremated</h1>
+
+    <div style="max-width: 600px; margin: 40px auto 0 auto; color: #c0c0c0; font-size: 1.2rem;">
+        <p th:text="#{404.notfound}">
+            We've searched the archives, checked under the caskets, and even sifted through the latest batch of ashes, but this page is nowhere to be found.
+        </p>
+        <p style="margin-top: 20px;" th:text="#{404.accident}">
+            It might have been accidentally incinerated, or perhaps it has simply moved on to the next plane of existence.
+        </p>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <a th:href="@{/}" class="cta-button" th:text="#{404.mausoleum}">Return to the Mausoleum</a>
+        <a th:href="@{/contact}" class="login-link" style="margin-left: 15px; border-color: #777;" th:text="#{404.medium}">Contact a Medium</a>
+    </div>
+
+</div>
+</body>
+</html>
