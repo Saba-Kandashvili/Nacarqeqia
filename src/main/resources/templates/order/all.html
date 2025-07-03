@@ -11,8 +11,6 @@
     <h1 class="section-title">All Orders (Admin View)</h1>
 
     <div class="orders-grid-modern">
-        <!-- Re-using the .info-card style -->
-        <!-- NOTE THE CHANGE: we now loop over 'orderPage.content' -->
         <div class="info-card" th:each="o : ${orderPage.content}">
             <div class="card-image">
                 <img th:src="@{${o.imgUrl}}" alt="Order Image" class="order-thumb"/>

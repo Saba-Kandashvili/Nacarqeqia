@@ -13,19 +13,17 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// --- ANNOTATION CHANGES ---
-@SpringBootTest // 1. Loads the full application context (including database and security)
-@AutoConfigureMockMvc // 2. Configures MockMvc for making requests in this full context
+
+@SpringBootTest // Loads the full application context (including database and security)
+@AutoConfigureMockMvc // Configures MockMvc for making requests in this full context
 class RegisterControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean // 3. We STILL mock UserService to control its behavior for our tests
+    @MockBean
     private UserService userService;
 
-    // 4. The @MockBean for JdbcUserDetailsManager is NO LONGER NEEDED.
-    // A real one will be created by the full application context.
 
     @Test
     void testProcessRegistration_Success() throws Exception {

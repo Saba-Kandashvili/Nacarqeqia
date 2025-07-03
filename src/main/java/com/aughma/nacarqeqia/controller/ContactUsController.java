@@ -34,7 +34,7 @@ public class ContactUsController {
             return "contact-us";
         }
 
-        // ← save it to the database
+        // save it to the database
         contactUsService.save(dto);
 
         redirectAttributes.addFlashAttribute("successMessage", "Message sent successfully");

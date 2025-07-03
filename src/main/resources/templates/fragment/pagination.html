@@ -4,8 +4,6 @@
 
 <!--
   Reusable Pagination Fragment
-  - th:fragment="pagination(page)": Defines this block as a reusable fragment named "pagination" that accepts one parameter: 'page'.
-  - The 'page' parameter must be a Spring Data 'Page' object (e.g., the 'orderPage' from your controller).
 -->
 <nav th:fragment="pagination(page)" th:if="${page.totalPages > 1}" class="pagination-container" aria-label="Page navigation">
     <ul class="pagination-list">
@@ -17,8 +15,7 @@
             </a>
         </li>
 
-        <!-- Page Numbers -->
-        <!-- We'll show a few pages around the current page for usability -->
+
         <th:block th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
             <li class="page-item"
                 th:if="${i == page.number or
@@ -35,7 +32,6 @@
             </li>
         </th:block>
 
-        <!-- 'Next' Link -->
         <li class="page-item" th:classappend="${page.last} ? 'disabled'">
             <a class="page-link" th:href="${page.last} ? '#' : '?page=' + ${page.number + 1}" aria-label="Next">
                 »

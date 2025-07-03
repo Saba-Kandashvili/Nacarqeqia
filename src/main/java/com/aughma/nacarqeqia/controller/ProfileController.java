@@ -23,7 +23,7 @@ public class ProfileController {
         // Get the username of the currently logged-in user
         String username = principal.getName();
 
-        // Create a page request (e.g., 9 items per page)
+        // Create a page request
         PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), 9);
 
         // Use our new repository method to find the user's orders

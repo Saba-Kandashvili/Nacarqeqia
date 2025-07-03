@@ -10,7 +10,7 @@
 <div layout:fragment="content" class="page-container orders-page-container">
     <h1 class="section-title" th:text="#{order.add.title}">Add a New Order</h1>
 
-    <!-- Apply the glass container style to the form -->
+    <!-- apply the glass container style to the form -->
     <form th:action="@{/order/add}"
           th:object="${addOrder}"
           method="post"

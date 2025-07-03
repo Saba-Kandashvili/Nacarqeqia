@@ -85,17 +85,13 @@ public class SupplyDummyDataOnStartup {
             int[] imageIds = {22, 28, 33, 42, 58, 60, 64, 65, 76, 77, 85, 90, 99}; // handpicked IDs
             String imageUrl = "https://picsum.photos/id/" + imageIds[rnd.nextInt(imageIds.length)] + "/600/400";
 
-            // ===================
-// THIS IS THE NEW, CORRECTED CODE
-// ===================
-// Create the AddOrder DTO using setters instead of the constructor
+
             AddOrder addOrder = new AddOrder();
             addOrder.setDeceasedName(users.get(rnd.nextInt(users.size())).getUsername());
             addOrder.setDescription(StringUtils.capitalize(String.join(" ", faker.lorem().words(rnd.nextInt(3, 6)))));
             addOrder.setYourName(users.get(rnd.nextInt(users.size())).getUsername());
-// The 'image' field remains null, which is perfectly fine for seeding data.
 
-// The rest of your code remains the same, as it creates a separate Order entity
+
             Order order = new Order();
             order.setDeceasedName(addOrder.getDeceasedName());
             order.setDescription(addOrder.getDescription());

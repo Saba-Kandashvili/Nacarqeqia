@@ -29,11 +29,11 @@ public class UserService {
         // Encrypt password
         String encodedPassword = passwordEncoder.encode(rawPassword);
 
-        // (1) First, save the user
+        // save the user
         User newUser = new User(username, encodedPassword, true, null, null);
         userRepository.save(newUser);
 
-        // (2) Then, save authority for that user
+        // Then save authority for that user
         Authority authority = new Authority(null, newUser, "ROLE_USER");
         authorityRepository.save(authority);
 
