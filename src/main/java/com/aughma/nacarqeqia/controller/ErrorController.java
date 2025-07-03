@@ -10,4 +10,6 @@ public class ErrorController {
     public String accessDenied() {
         return "403"; // This maps to templates/403.html
     }
+
+
 }

@@ -18,53 +18,52 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
-    @Mock // Creates a mock implementation for the UserRepository
+    @Mock
     private UserRepository userRepository;
 
-    @Mock // Creates a mock for the AuthorityRepository
+    @Mock
     private AuthorityRepository authorityRepository;
 
-    @Mock // Creates a mock for the PasswordEncoder
+    @Mock
     private PasswordEncoder passwordEncoder;
 
-    @InjectMocks // Creates an instance of UserService and injects the mocks into it
+    @InjectMocks
     private UserService userService;
 
     @Test
     void testRegister_Success() {
-        // 1. Arrange (Set up the test)
+        // 1. arrange
         String username = "testuser";
         String rawPassword = "password123";
         String encodedPassword = "encodedPassword123";
 
-        // Define the behavior of the mocked password encoder
+        // define the behavior
         when(passwordEncoder.encode(rawPassword)).thenReturn(encodedPassword);
 
-        // 2. Act (Execute the method to be tested)
+        // 2. act
         userService.register(username, rawPassword);
 
-        // 3. Assert & Verify (Check the results)
+        // 3. assert & verify
 
-        // Use ArgumentCaptor to capture the User object that was passed to the save method
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
-        verify(userRepository).save(userArgumentCaptor.capture()); // Verify that save was called and capture the argument
+        verify(userRepository).save(userArgumentCaptor.capture());
         User savedUser = userArgumentCaptor.getValue();
 
-        // Assert that the saved user has the correct properties
+        // user has the correct properties
         assertEquals(username, savedUser.getUsername());
         assertEquals(encodedPassword, savedUser.getPassword());
         assertTrue(savedUser.isEnabled());
 
-        // Use ArgumentCaptor to capture the Authority object
+        // Use argumentCaptor to capture the authority object
         ArgumentCaptor<Authority> authorityArgumentCaptor = ArgumentCaptor.forClass(Authority.class);
-        verify(authorityRepository).save(authorityArgumentCaptor.capture()); // Verify and capture
+        verify(authorityRepository).save(authorityArgumentCaptor.capture()); // verify and capture
         Authority savedAuthority = authorityArgumentCaptor.getValue();
 
-        // Assert that the saved authority is correct
+        // assert that the saved authority is correct
         assertEquals("ROLE_USER", savedAuthority.getAuthority());
-        assertEquals(username, savedAuthority.getUser().getUsername()); // Check it's linked to the correct user
+        assertEquals(username, savedAuthority.getUser().getUsername()); // check it's linked to the correct user
 
-        // Verify that the encode method was called exactly once
+        // verify that the encode method was called exactly once
         verify(passwordEncoder, times(1)).encode(rawPassword);
     }
 }

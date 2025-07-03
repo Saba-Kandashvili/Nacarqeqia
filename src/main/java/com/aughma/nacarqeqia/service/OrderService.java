@@ -51,7 +51,7 @@ public class OrderService {
         order.setDescription(addOrder.getDescription());
         order.setImgUrl("/image/" + fileName);
         order.setUpdatedAt(LocalDateTime.now());
-        order.setClientName("GOD"); // TODO: IMPLEMENT CLIENTNAMES
+        order.setClientName(addOrder.getYourName());
         order.setAuthor(user);
         return orderRepository.save(order);
     }
@@ -66,9 +66,8 @@ public class OrderService {
         order.setDescription(addOrder.getDescription());
         order.setImgUrl("/image/default.png"); // dummy image
         order.setUpdatedAt(LocalDateTime.now());
-        order.setAuthor(user); // You forgot to assign the user!
         order.setClientName(addOrder.getYourName());
-        order.setAuthor(user);
+        order.setAuthor(user); // Set the author once
         return orderRepository.save(order);
     }
 

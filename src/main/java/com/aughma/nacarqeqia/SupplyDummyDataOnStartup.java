@@ -50,23 +50,23 @@ public class SupplyDummyDataOnStartup {
                         .password(passwordEncoder.encode("admin"))
                         .roles("USER", "ADMIN")
                         .build(),
-                User.withUsername("vakho")
+                User.withUsername("Ozzy")
                         .password(passwordEncoder.encode("password"))
                         .roles("USER")
                         .build(),
-                User.withUsername("gio")
+                User.withUsername("Klaus")
                         .password(passwordEncoder.encode("password"))
                         .roles("USER")
                         .build(),
-                User.withUsername("dato")
+                User.withUsername("Freddie")
                         .password(passwordEncoder.encode("password"))
                         .roles("USER")
                         .build(),
-                User.withUsername("mari")
+                User.withUsername("Gary")
                         .password(passwordEncoder.encode("password"))
                         .roles("USER")
                         .build(),
-                User.withUsername("bob")
+                User.withUsername("Axl")
                         .password(passwordEncoder.encode("password"))
                         .roles("USER")
                         .build()
@@ -101,7 +101,7 @@ public class SupplyDummyDataOnStartup {
             order.setDescription(addOrder.getDescription());
             order.setImgUrl(imageUrl);
             order.setUpdatedAt(LocalDateTime.now());
-            order.setClientName("GOD");
+            order.setClientName("GRIM Reaper (DUMMY)");
             order.setAuthor(userRepository.findByUsername(username)
                     .orElseThrow(() -> new IllegalArgumentException("User not found")));
 

@@ -29,13 +29,16 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/h2-console/**") // disable CSRF on H2 Console
                 )
                 .authorizeHttpRequests(auth -> auth
-                        // Require ADMIN role for all actuator endpoints and the all orders page
+                        // Secure all /admin routes, plus actuators and the old /orders route
                         .requestMatchers("/admin/**", "/actuator/**", "/orders").hasRole("ADMIN")
-                        // Your existing rules for public pages
+
+                        // Explicitly allow POST requests to /register for everyone
+                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/register").permitAll()
+
                         .requestMatchers("/", "/register", "/contact", "/about", "/css/**", "/images/**", "/h2-console/**").permitAll()
-                        // Your existing rules for authenticated users
+
                         .requestMatchers("/order/**", "/profile/**").authenticated()
-                        // Your fallback rule
+
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
@@ -65,7 +68,6 @@ public class SecurityConfig {
 
     @Bean
     public JdbcUserDetailsManager jdbcUserDetailsManager() {
-        // This will use your 'users' and 'authorities' tables
         return new JdbcUserDetailsManager(dataSource);
     }
 

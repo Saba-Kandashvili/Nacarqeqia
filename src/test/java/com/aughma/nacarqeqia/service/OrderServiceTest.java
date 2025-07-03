@@ -34,34 +34,37 @@ class OrderServiceTest {
 
     @Test
     void testSave_WithoutImage_Success() {
-        // 1. Arrange
-        String username = "vakho";
-        AddOrder addOrderDto = new AddOrder("John Smith", "A very solemn service", "vakho");
+        // 1. arrange
+        String username = "giorgi";
         User author = new User();
         author.setUsername(username);
 
-        // Define behavior for mocked repository: when findById is called, return our test user
+        AddOrder addOrderDto = new AddOrder();
+        addOrderDto.setDeceasedName("John Smith");
+        addOrderDto.setDescription("A very solemn service");
+        addOrderDto.setYourName("giorgi");
+
+        // mock behavior
         when(userRepository.findById(username)).thenReturn(Optional.of(author));
-        // We also need to mock the save to return the saved order
         when(orderRepository.save(any(Order.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        // 2. Act
+        // 2. act
         Order savedOrder = orderService.save(username, addOrderDto);
 
-        // 3. Assert & Verify
+        // 3. assert & verify
         assertNotNull(savedOrder);
 
-        // Use ArgumentCaptor to inspect the order passed to the repository's save method
+        // use ArgumentCaptor to inspect the Order passed to the repository
         ArgumentCaptor<Order> orderArgumentCaptor = ArgumentCaptor.forClass(Order.class);
         verify(orderRepository).save(orderArgumentCaptor.capture());
         Order capturedOrder = orderArgumentCaptor.getValue();
 
-        // Check if the captured order has the correct data
+        // check if the captured order has the correct data based on the service logic
         assertEquals("John Smith", capturedOrder.getDeceasedName());
         assertEquals("A very solemn service", capturedOrder.getDescription());
         assertEquals("/image/default.png", capturedOrder.getImgUrl());
-        assertEquals(author, capturedOrder.getAuthor()); // The user object should be the same
-        assertEquals("GOD", capturedOrder.getClientName());
+        assertEquals(author, capturedOrder.getAuthor());
+        assertEquals("giorgi", capturedOrder.getClientName());
         assertNotNull(capturedOrder.getUpdatedAt());
     }
 }

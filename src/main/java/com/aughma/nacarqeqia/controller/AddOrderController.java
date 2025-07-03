@@ -32,8 +32,6 @@ public class AddOrderController {
 
     @GetMapping("/order/add")
     public String addOrder(Model model) {
-        // Explicitly add a new, empty AddOrder object to the model.
-        // This guarantees the template will have what it needs.
         model.addAttribute("addOrder", new AddOrder());
         return "order/add";
     }
