@@ -1,198 +1,63 @@
-Of course. Given the brilliant concept of "Nacarqeqia," this is a fantastic request. A project this unique deserves a README that matches its fiery spirit.
+# Nacarqeqia 🔥 - The Final Glow-Up
 
-Here is a dark-humor, satirical README file for your GitHub project. It blends technical accuracy with the crematorium's brand identity. Just copy and paste this into your README.md file.
+![Build Status](https://img.shields.io/badge/build-smoldering-orange?style=for-the-badge)
+![Tech Stack](https://img.shields.io/badge/tech-infernal_arts-black?style=for-the-badge)
+![License](https://img.shields.io/badge/license-Do%20Not%20Resurrect-red?style=for-the-badge)
 
-Nacarqeqia - The Final Glow-Up 🔥
+A satirical full-stack Spring Boot application for a modern, digital crematorium. Because your final journey deserves a little... flare.
 
-![alt text](https://img.shields.io/badge/build-smoldering-orange?style=for-the-badge)
+## ✨ Features
 
+*   Secure user registration & login system.
+*   Service ordering system with image uploads.
+*   Role-based admin dashboard to view messages and all user orders.
+*   Internationalization (i18n) for English and, for a touch of class, Latin.
+*   H2 database for data persistence.
 
-![alt text](https://img.shields.io/badge/coverage-mostly_ashes-lightgrey?style=for-the-badge)
+## ⚙️ Tech Stack
 
+*   **Backend:** Spring Boot, Spring Security, Spring Data JPA
+*   **Frontend:** Thymeleaf, HTML5, CSS3
+*   **Database:** H2 Database
+*   **Build:** Apache Maven
+*   **Containerization:** Docker
 
-![alt text](https://img.shields.io/badge/license-Do%20Not%20Resurrect-red?style=for-the-badge)
+## 🚀 Running the Service
 
+You have two options to bring the inferno to life.
 
-![alt text](https://img.shields.io/badge/tech-infernal_arts-black?style=for-the-badge)
+### 1. Locally (The Kindling)
 
-Welcome to the digital furnace of Nacarqeqia, a premier, full-stack web application dedicated to disrupting the post-mortem services industry. We leverage state-of-the-art pyrotechnology and a Spring Boot backend to deliver bespoke incineration experiences with dignity, efficiency, and a touch of dark humor.
+For development and direct database access.
 
-For our Georgian friends who understand the tale of Nacarqeqia (ნაცარქექია) — the "ash-raker" — you know we're not just about the fire. We're about sifting through the remains to find the triumphant spirit within. You get it.
+1.  Clone the repo: `git clone https://github.com/your-username/nacarqeqia.git && cd nacarqeqia`
+2.  Run the app: `./mvnw spring-boot:run`
+3.  Access the service at **`https://localhost:25565`**.
+4.  Access the H2 Console at **`https://localhost:25565/h2-console`** with these settings:
+    *   **JDBC URL:** `jdbc:h2:file:~/nacarqeqia-db`
+    *   **User Name:** `root`
+    *   **Password:** `pass`
 
-🔥 Core Services (Features)
+### 2. With Docker (Full Burn - Recommended)
 
-Our enterprise-grade platform offers a comprehensive suite of features for clients and administrators alike:
+This is the simplest way to run a self-contained, production-ready instance.
 
-Client Onboarding: A seamless, secure user registration and login system. Because your eternal rest should begin with a good user experience.
+1.  **Build the image:**
+    ```bash
+    docker build -t nacarqeqia .
+    ```
+2.  **Run the container:**
+    ```bash
+    docker run -d -p 25565:25565 --name nacarqeqia-app nacarqeqia
+    ```
+3.  The application is now live at **`https://localhost:25565`**.
 
-Bespoke Service Requisition: An intuitive form for clients to submit their... final requests, complete with detailed descriptions and image uploads of cherished memories (or urn preferences).
+### Managing the Container
 
-The Overseer's Sanctum: A protected, role-based admin dashboard (/admin/messages, /profile) to review incoming requests and manage the flow of souls.
+*   **View logs (check the temperature):** `docker logs nacarqeqia-app`
+*   **Stop the service (douse the flames):** `docker stop nacarqeqia-app`
+*   **Start the service again (re-ignite):** `docker start nacarqeqia-app`
 
-The Soul Ledger: An H2 database meticulously tracking all orders and client data, ensuring no soul is misplaced.
+---
 
-Multilingual Support: We cater to a distinguished clientele. Communications are available in modern English and, for a touch of timeless solemnity, Classical Latin.
-
-⚙️ The Infernal Machinery (Tech Stack)
-
-This project was forged in the following technologies:
-
-The Furnace (Backend): Spring Boot 3, Spring Security, Spring Data JPA
-
-The Ritual Scrolls (Frontend): Thymeleaf, HTML5, CSS3
-
-The Urn (Database): H2 (for both development and containerized deployment)
-
-The Incantations (Build): Apache Maven
-
-The Vessel (Containerization): Docker
-
-🚀 Unleashing the Inferno (Deployment)
-
-Getting your own instance of Nacarqeqia smoldering is a straightforward ritual.
-
-1. Local Development (The Kindling)
-
-For local testing and development against a temporary H2 database.
-
-Prerequisites: JDK 17, Maven.
-
-Clone the repository:
-
-Generated bash
-git clone https://github.com/your-username/nacarqeqia.git
-cd nacarqeqia
-
-
-Run the application:
-
-Generated bash
-./mvnw spring-boot:run
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
-
-Access the application: https://localhost:25565
-
-Consult the Book of Souls (H2 Console): https://localhost:25565/h2-console
-
-Driver Class: org.h2.Driver
-
-JDBC URL: jdbc:h2:file:~/nacarqeqia-db
-
-User Name: root
-
-Password: pass
-
-2. Docker Deployment (Full Burn)
-
-This is the recommended method for a clean, isolated deployment. The provided Dockerfile uses a multi-stage build to create a lean, production-ready image.
-
-Prerequisites: Docker Desktop installed and running.
-
-Navigate to the project root.
-
-Build the Docker image: This command packages the app and builds the image in one step.
-
-Generated bash
-docker build -t nacarqeqia .
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
-
-Run the container: This command starts the application.
-
-Generated bash
-docker run -d -p 25565:25565 --name nacarqeqia-app nacarqeqia
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
-
--d: Runs the container in the background.
-
--p 25565:25565: Maps your machine's port 25565 to the container's port 25565.
-
---name nacarqeqia-app: Gives the container a convenient name.
-
-The application is now live at https://localhost:25565.
-
-Managing the Containerized Inferno
-
-View logs (check the temperature):
-
-Generated bash
-docker logs nacarqeqia-app
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
-
-Stop the service (douse the flames):
-
-Generated bash
-docker stop nacarqeqia-app
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
-
-Start the service again (re-ignite):
-
-Generated bash
-docker start nacarqeqia-app
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
-📜 A Look Inside the Mausoleum (Project Structure)
-
-The source code is organized with the utmost care for the dearly departed... data.
-
-src/main/java/com/aughma/nacarqeqia
-
-config: Security, Web, and SSL configurations. The sacred rites.
-
-controller: The Emissaries who handle incoming requests from the mortal realm.
-
-entity: The Relics. JPA entities representing Users, Orders, and Authorities.
-
-repository: The Keepers of the Urns. Spring Data JPA interfaces.
-
-service: The Ritualists. Business logic for processing souls and orders.
-
-model: The Offerings. DTOs for form data.
-
-src/main/resources
-
-static: CSS styles and images (our brand assets).
-
-templates: Thymeleaf templates for rendering the hallowed halls of our site.
-
-application.properties: The main incantation book for aplication settings.
-
-keystore.p12: The key to the underworld (our SSL certificate).
-
-🪦 A Word on Contribution
-
-Have a burning desire to contribute? Pull requests are welcome. Please ensure your contributions align with our brand's unique blend of professionalism and gallows humor.
-
-License
-
-This project is licensed under the MIT License - see the LICENSE.md file for details. Basically, do what you want, but don't blame us if your server catches fire.
-
-Stay Toasty.
+Licensed under MIT. Pull requests are welcome, provided they have the appropriate amount of gallows humor.
