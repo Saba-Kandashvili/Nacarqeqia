@@ -1,34 +1,28 @@
-# =================
-# STAGE 1: Build
-# =================
-# Use a Maven and Java 21 image to build the application's JAR file.
-FROM maven:3.9-eclipse-temurin-21 AS build
+# ---- Stage 1: Build ----
+FROM openjdk:17-jdk-slim AS builder
+WORKDIR /app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+COPY src ./src
+RUN ./mvnw package -DskipTests
 
-# Set the working directory inside the container
+
+# ---- Stage 2: Run ----
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-# Copy the entire project into the container
-COPY . .
+# Explicitly copy the keystore into the container's filesystem.
+# This is a new, important line.
+COPY src/main/resources/keystore.p12 /app/keystore.p12
 
-# Run the Maven package command to build the project and create the JAR file.
-# We skip tests here because they've already been run. This makes the build faster.
-RUN mvn clean package -DskipTests
+# Copy the built .jar file from the 'builder' stage.
+COPY --from=builder /app/target/*.jar app.jar
 
-# =================
-# STAGE 2: Run
-# =================
-# Use a minimal Java 21 Runtime image. This makes our final image much smaller and more secure.
-FROM eclipse-temurin:21-jre-jammy
-
-# Set the working directory
-WORKDIR /app
-
-# Copy ONLY the built JAR file from the 'build' stage into this new, clean stage.
-COPY --from=build /app/target/*.jar app.jar
-
-# Expose port 25565. This tells Docker that the application inside the container will listen on this port.
+# Expose port 25565.
 EXPOSE 25565
 
 # The command to run when the container starts.
-# This executes your Spring Boot application.
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# We override the keystore location with a direct file path.
+# This is the other important change.
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=dev", "--server.ssl.key-store=/app/keystore.p12"]
