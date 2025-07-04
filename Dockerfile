@@ -13,7 +13,6 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Explicitly copy the keystore into the container's filesystem.
-# This is a new, important line.
 COPY src/main/resources/keystore.p12 /app/keystore.p12
 
 # Copy the built .jar file from the 'builder' stage.
@@ -23,6 +22,5 @@ COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 25565
 
 # The command to run when the container starts.
-# We override the keystore location with a direct file path.
-# This is the other important change.
+# override the keystore location with a direct file path.
 ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=dev", "--server.ssl.key-store=/app/keystore.p12"]

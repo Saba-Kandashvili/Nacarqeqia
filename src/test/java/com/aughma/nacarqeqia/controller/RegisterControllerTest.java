@@ -14,8 +14,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@SpringBootTest // Loads the full application context (including database and security)
-@AutoConfigureMockMvc // Configures MockMvc for making requests in this full context
+@SpringBootTest
+@AutoConfigureMockMvc
 class RegisterControllerTest {
 
     @Autowired
@@ -34,7 +34,7 @@ class RegisterControllerTest {
         // Define mock behavior for our mocked UserService
         when(userService.existsUsername(username)).thenReturn(false);
 
-        // Act & Assert (This part remains the same)
+        // Act & Assert
         mockMvc.perform(post("/register")
                         .param("username", username)
                         .param("password", password)
@@ -54,7 +54,7 @@ class RegisterControllerTest {
         // Define mock behavior for our mocked UserService
         when(userService.existsUsername(existingUsername)).thenReturn(true);
 
-        // Act & Assert (This part remains the same)
+        // Act & Assert
         mockMvc.perform(post("/register")
                         .param("username", existingUsername)
                         .param("password", password)

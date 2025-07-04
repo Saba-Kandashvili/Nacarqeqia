@@ -127,7 +127,7 @@ a { text-decoration: none; color: inherit; }
     box-shadow: 0 0 15px 3px var(--flame-glow), 0 0 30px 10px rgba(255, 87, 34, 0.3);
 }
 .header_logo img {
-    height: 60px; /* Adjusted size */
+    height: 60px;
     width: auto;
 }
 .header_logo h1, .header_logo .slogan {
@@ -423,7 +423,6 @@ a { text-decoration: none; color: inherit; }
    ========================================================================== */
 
 /* --- Body Override for Homepage --- */
-/* We give the body a dark, textured background for this page */
 body {
     background-color: #121212;
     /* A subtle, high-quality noise texture adds a premium feel */
@@ -434,7 +433,7 @@ body {
 
 /* --- Hero Section --- */
 .hero-section-modern {
-    height: 70vh; /* A bit taller for more impact */
+    height: 70vh;
     min-height: 500px;
     display: flex;
     align-items: center;
@@ -607,7 +606,6 @@ body {
     width: auto;
     max-width: 100%;
     object-fit: contain;
-    /* --- ADD THESE TWO LINES --- */
     display: block;
     margin: 0 auto;
 }
@@ -683,7 +681,7 @@ body {
 .team-member-glass img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Shrink to fit, no cropping! */
+    object-fit: contain;
 }
 
 .team-info {
@@ -732,7 +730,7 @@ body {
     padding-left: 35px;
     position: relative;
 }
-/* Use the fire emoji as a stylish bullet point */
+
 .commitment-list li::before {
     content: '🔥';
     position: absolute;
@@ -761,7 +759,7 @@ body {
     /* The "Frosted Glass" Effect */
     background: rgba(42, 42, 46, 0.6); /* Semi-transparent background, slightly darker */
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px); /* For Safari */
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -791,7 +789,7 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Remove the default ugly outline and add our own glowing effect */
+
 .form-group-modern input:focus,
 .form-group-modern textarea:focus {
     outline: none;
@@ -800,7 +798,7 @@ body {
 }
 
 .form-group-modern textarea {
-    resize: vertical; /* Allow vertical resizing, but not horizontal */
+    resize: vertical;
     min-height: 120px;
 }
 
@@ -952,7 +950,7 @@ body {
     font-weight: 500;
 }
 
-/* --- NEW: Login & Register Page Styles --- */
+
 .auth-page-container {
     min-height: 80vh;
     display: flex;
@@ -965,7 +963,7 @@ body {
     margin-bottom: 40px;
 }
 .auth-page-container .section-title::after {
-    display: none; /* No underline for these titles */
+    display: none;
 }
 .auth-form-links {
     text-align: center;
@@ -1096,7 +1094,6 @@ body {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Make the message content wrap nicely */
 .messages-table .message-content {
     white-space: pre-wrap; /* Preserves whitespace and wraps text */
     word-break: break-word;
